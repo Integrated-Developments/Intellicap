@@ -1,8 +1,2 @@
 desktop.ini
-site-packages/
-__pycache__/
-*.pyc
-*.pyo
-*.log
-Lib/site-packages/
-Scripts/*.exe
+run.bat
