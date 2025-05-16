@@ -1,0 +1,14 @@
+{
+    "Net Stat": {
+        "Unicast_Packets": {
+            "Received": "97158",
+            "Sent": "72750"
+        },
+        "Non_Unicast_Packets": {
+            "Received": "7866",
+            "Sent": "2574"
+        },
+        "Unknown_Protocols": "0"
+    },
+    "Speed Test": {}
+}

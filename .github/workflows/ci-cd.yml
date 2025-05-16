@@ -1,0 +1,47 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.9'
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: Run Python tests
+      run: |
+        python -m unittest discover
+
+    - name: Build Go components
+      run: |
+        cd core/src_assets/DesktopAPI/go_components && go build -o ../../bin/go_component
+
+    - name: Build Rust components
+      run: |
+        cd core/src_assets/DesktopAPI/rust_components && cargo build --release
+
+    - name: Build C components
+      run: |
+        cd core/src_assets/DesktopAPI/c_components && gcc -o ../../bin/c_component main.c
+
+    - name: Deploy Flask app
+      run: |
+        python core/src_assets/DesktopAPI/desk_flask.py

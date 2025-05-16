@@ -1,0 +1,58 @@
+{"system" : {
+    "Acc" : {
+            "div_12" : {
+                "shares" : 16,
+                "dep_tot" : 160,
+                "withd_tot" : 0,
+                "reinv_shares" : 5
+            },
+            "div_4" : {
+                "shares" : 0,
+                "dep_tot" : 0,
+                "withd_tot" : 0,
+                "reinv_shares" : 0
+            },
+            "crp_hld" : {
+                "shares" : 0,
+                "dep_tot" : 0,
+                "withd_tot" : 0
+            },
+            "crp_sclp" : {
+                "shares" : 0,
+                "dep_tot" : 0,
+                "withd_tot" : 0
+            },
+            "opt_7" : {
+                "shares" : 0,
+                "dep_tot" : 0,
+                "withd_tot" : 0
+            },
+            "opt_day" : {
+                "shares" : 0,
+                "dep_tot" : 0,
+                "withd_tot" : 0
+            },
+            "stock_hld" : {
+                "shares" : 0,
+                "dep_tot" : 0,
+                "withd_tot" : 0
+            },
+            "stock_sclp" : {
+                "shares" : 0,
+                "dep_tot" : 0,
+                "withd_tot" : 0
+            }
+    },
+    "static_info" : {
+        "setting_options" : {
+            "keys" : {
+                "la_ntry" : {
+                    "NULL" : "Means this user is ADMIN Trusted and believed to be unrequired to register a loan agreement as we shouldn't ever have an issue with funds, no matter how high the entire account gets. This user is completely accepted and has a default access level of 'accepted'.",
+                "accepted" : "Means this user has registered a username, email, and password, signed a Loan Agreement, and the agreement was notorized. The system has verified the notary and issued keys to the user. This user can now create deposits and withdrawls to their account. This is defualt account level that can invest and withdraw.",
+                "signed" : "Means this user has registered a username, email, and password, signed a Loan Agreement, but the Agreement has not been notarized yet, the system is still verifying the notary, or the system is still updating their account level and issuing keys. This user can look at system data, edit account details, see the progress of their agreement/issuance of keys, but can not create deposits or withdraws. This user is safe from autodeletion",
+                "inactive" : "Means this user has registered a username, email, and password, but has not signed a loan agreement, user can change account details and watch the system data, but can not create deposits or withdraws and account will be auto deleted in 14days if loan agreement is not signed or extensions are bot applied in the user's account settings.",
+                "error" : "Means the system has encountered an error during the handling of the users loan agreement. More information will be provided in the user's account settings where applicable, and logs will be generated at the ADMIN level for system controllers to manually take over. Errors can be because of many things, main reasons are, but not limited to, returned Agreement without notarization for any reason, 1.) typically due to missing, wrong, or incomplete information on the agreement, this can only be resolved by the user. 2.) system inability to verify the notary, this can happen from time to time when the agreement isnt as straight foward as most and thus requires special clauses or statements. All special cases will trigger this and These MUST be resolved by cooperation of the user, and ADMIN, and may incur an increased onetime sign up fee to cover the costs of creating the custom agreement, and paying the notary to verify the new clauses. 3.) system inability to issue custom keys and update account access level. This is solely a system error and can only be resolved by ADMIN. If user account finds this error, they are directed to alert ADMIN, and provide any information that might be required. ADMIN accounts will have gotten a log of this error, but user cooperation can sometimes help speed up resolving the issue. Most common reason for this error is the system has given a custom key that isn't accepted by the system log verifier, or has chosen a key that had already been issued. There is methods in place to decrease the chances of either happening but as more users sign up, and the system requires more and more cpu working time, this can happened."
+            }
+        }
+    }
+}}

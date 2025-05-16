@@ -1,0 +1,38 @@
+version: '1.0'
+actions:
+  - id: send_screenshot_request
+    name: Send Screenshot Request
+    description: Sends a POST request to the Flask app to take a screenshot and retrieve the image.
+    steps:
+      - id: send_post_request
+        name: Send POST Request
+        description: Sends the JSON request to the Flask app and receives the image response.
+        action:
+          type: http_request
+          method: POST
+          url: "http://127.0.0.1:5000/screenshot"  # Replace with your ngrok URL if applicable
+          headers:
+            Content-Type: "application/json"
+          body: |
+            {
+              "key": "unique_request_id",
+              "args": {}
+            }
+        outputs:
+          - name: response
+            type: http_response
+
+      - id: save_image
+        name: Save Image
+        description: Saves the retrieved image locally.
+        action:
+          type: save_file
+          input: response.body
+          destination: ./retrieved_screenshot.png
+
+      - id: display_image
+        name: Display Image
+        description: Outputs the saved image for the module to view.
+        action:
+          type: show_image
+          path: ./retrieved_screenshot.png

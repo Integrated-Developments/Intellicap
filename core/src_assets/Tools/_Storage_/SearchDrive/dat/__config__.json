@@ -1,0 +1,110 @@
+{
+    "System-4": {
+        "Config": {
+            "Delete": [
+                {
+                    "name": "Top",
+                    "desc": "Attempt to Delete Top-Level Search Results",
+                    "enabled": false,
+                    "args": [
+                        {
+                            "name": "Running",
+                            "enabled": false,
+                            "desc": "~ En: Delete While Running | ~ Dis: Delete After All Search"
+                        }
+                    ]
+                },
+                {
+                    "name": "All",
+                    "desc": "Attempts to Delete All Search Results",
+                    "enabled": false,
+                    "args": [
+                        {
+                            "name": "Running",
+                            "enabled": false,
+                            "desc": "~ En: Delete While Running | ~ Dis: Delete After All Search"
+                        }
+                    ]
+                },
+                {
+                    "name": "Owner",
+                    "desc": "Attempts to Take Ownership and Grant R/W of Access Denied Items",
+                    "enabled": false,
+                    "args": [
+                        {
+                            "name": "Aggressive",
+                            "enabled": false,
+                            "desc": "~ En: %CAUTION% >SafeMode>Del:RegKeys@WinDef>TakeOwn>En:RegKeys@WinDef>Reboot | ~ Dis: >PS1"
+                        }
+                    ]
+                }
+            ],
+            "OutPut" : [
+                {
+                    "name": "FormatItems",
+                    "desc": "OutPuts a File with only items in OS-Dev Format",
+                    "enabled": false,
+                    "args": [
+                        {
+                            "name": ""
+                            "enabled": ""
+                            "desc": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "",
+                    "desc": "",
+                    "enabled": false,
+                    "args": [
+                        {
+                            "name": "",
+                            "enabled": false,
+                            "desc": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        "Stats": {
+            "": {
+                "": ""
+            }
+        }
+    },
+    "System-3": {
+        "Config": {
+            "": [
+                {
+                    "name": "",
+                    "desc": "",
+                    "enabled": false,
+                    "args": [
+                        {
+                            "name": "",
+                            "enabled": false,
+                            "desc": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        "Stats": {
+            "": {
+                "": ""
+            }
+        }
+    }
+}
+{
+    "BLANKS": {
+        "Config": {
+            "": ""
+        },
+        "Stats": {
+            "": {
+                "": ""
+            }
+        }
+    }
+}

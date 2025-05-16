@@ -1,0 +1,109 @@
+openapi: 3.1.0
+info:
+  title: Append JSON to Logs API
+  description: API for appending prompt-response pairs to `prores.json` located in `/home/API666/mysite/logs` without overwriting.
+  version: 0.1.0
+servers:
+  - url: https://api666.pythonanywhere.com
+    description: Production server (PythonAnywhere)
+paths:
+  /append_json:
+    post:
+      operationId: appendJsonToLog
+      summary: Append Prompt-Response Pair to Log
+      description: Accepts JSON data from GPT and appends it to `prores.json` in the `logs` folder.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                Prompt:
+                  type: string
+                  description: The user input or question.
+                  example: What is the capital of France?
+                Response:
+                  type: string
+                  description: The GPT-generated response.
+                  example: The capital of France is Paris.
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  message:
+                    type: string
+                    example: Data appended successfully
+        "500":
+          description: Server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: error
+                  message:
+                    type: string
+                    example: Error message detailing the issue
+  /get_data:
+    post:
+      operationId: getFileData
+      summary: Retrieve File Content
+      description: Accepts a file path and returns its content if the file exists.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                file_path:
+                  type: string
+                  description: Path of the file to retrieve.
+                  example: logs/prores.json
+      responses:
+        "200":
+          description: File content retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  content:
+                    type: string
+                    description: Contents of the requested file.
+                  status:
+                    type: string
+                    example: success
+        "400":
+          description: Bad Request - No file path provided
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: No file path provided.
+        "404":
+          description: File Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: File not found.
+                  status:
+                    type: string
+                    example: null

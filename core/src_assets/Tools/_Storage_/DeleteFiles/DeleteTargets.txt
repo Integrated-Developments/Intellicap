@@ -1,0 +1,8 @@
+C:\hp\HPQWare\StartMenuLink\All\All\Priceline.com.lnk
+C:\hp\HPQWare\typedURL\en-US\USA\Priceline.com.url
+C:\Program Files (x86)\Online Services\Priceline
+C:\Program Files (x86)\Online Services\Priceline\priceline.ico
+C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Priceline.com.lnk
+C:\system.sav\logs\Priceline.log
+C:\system.sav\logs\pricelineEnv.log
+C:\system.sav\logs\CEPS\BTBHost\swsetup\Metro\PricelineM

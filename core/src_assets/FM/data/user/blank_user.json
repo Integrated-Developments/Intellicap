@@ -1,0 +1,54 @@
+{"USERNAME" : {
+        "email" : "none",
+        "rec_email" : "none",
+        "pass" : "none",
+        "keys" : {
+            "status" : "unregistered",
+            "la_ntry" : "none",
+            "lvl" : "none",
+            "key" : "none"
+        },
+        "Acc" : {
+            "div_12" : {
+                "shares" : 0,
+                "dep_tot" : 0,
+                "withd_tot" : 0
+            },
+            "div_4" : {
+                "shares" : 0,
+                "dep_tot" : 0,
+                "withd_tot" : 0
+            },
+            "crp_hld" : {
+                "shares" : 0,
+                "dep_tot" : 0,
+                "withd_tot" : 0
+            },
+            "crp_sclp" : {
+                "shares" : 0,
+                "dep_tot" : 0,
+                "withd_tot" : 0
+            },
+            "opt_7" : {
+                "shares" : 0,
+                "dep_tot" : 0,
+                "withd_tot" : 0
+            },
+            "opt_day" : {
+                "shares" : 0,
+                "dep_tot" : 0,
+                "withd_tot" : 0
+            },
+            "stock_hld" : {
+                "shares" : 0,
+                "dep_tot" : 0,
+                "withd_tot" : 0
+            },
+            "stock_sclp" : {
+                "shares" : 0,
+                "dep_tot" : 0,
+                "withd_tot" : 0
+            }
+        }
+    }
+}

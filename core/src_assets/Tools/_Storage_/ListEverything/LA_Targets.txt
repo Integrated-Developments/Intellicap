@@ -1,0 +1,10 @@
+C:\Program Files\WindowsApps\microsoft.gethelp_10.2409.22951.0_neutral_~_8wekyb3d8bbwe
+C:\Program Files\WindowsApps\microsoft.gethelp_10.2409.22951.0_x64__8wekyb3d8bbwe
+C:\Program Files\WindowsApps\microsoft.3dbuilder_13.0.10349.0_neutral_~_8wekyb3d8bbwe
+C:\Program Files\WindowsApps\microsoft.mixedreality.portal_2000.21051.1282.0_neutral_~_8wekyb3d8bbwe
+C:\Program Files\WindowsApps\microsoft.mixedreality.portal_2000.21051.1282.0_neutral_split.language-ja_8wekyb3d8bbwe
+C:\Program Files\WindowsApps\microsoft.mixedreality.portal_2000.21051.1282.0_neutral_split.scale-125_8wekyb3d8bbwe
+C:\Program Files\WindowsApps\microsoft.mixedreality.portal_2000.21051.1282.0_x64__8wekyb3d8bbwe
+C:\Users\angry\AppData\Local\Packages\Microsoft.MixedReality.Portal_8wekyb3d8bbwe
+C:\Program Files\WindowsApps\4df9e0f8.netflix_7.0.8.0_neutral__mcm4njqhnhss8
+C:\Program Files\WindowsApps\4df9e0f8.netflix_7.0.8.0_neutral_~_mcm4njqhnhss8

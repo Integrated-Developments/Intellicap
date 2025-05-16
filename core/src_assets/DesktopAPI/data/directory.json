@@ -1,0 +1,134 @@
+{
+	"C:\\Users\\angry\\My Drive\\Shared GDrive\\1.] Dev Coding\\1.] AI\\1.] Auto Trader" : {
+		"\\API" : {
+			"\\DesktopAPI" : {
+				"\\actions" : {
+					"\\__curls__" : {
+						"\\display_capture.bat" : "FILE",
+						"\\files_list.bat" : "FILE",
+						"\\keyboard_type.bat" : "FILE",
+						"\\mouse_click.bat" : "FILE",
+						"\\mouse_drag.bat" : "FILE",
+						"\\mouse_info.bat" : "FILE",
+						"\\mouse_move.bat" : "FILE",
+						"\\mouse_scroll.bat" : "FILE"
+
+					},
+					"\\__pycache__" : {
+						"actions.cpython-312.pyc" : "FILE"
+					},
+					"\\__init__.py" : "FILE",
+					"\\display.py" : "FILE",
+					"\\files.py" : "FILE",
+					"\\keyboard.py" : "FILE",
+					"\\mouse.py" : "FILE"
+				},
+				"\\data" : {
+					"\\logs" : {
+						"\\access_log" : {},
+						"\\action_log" : {
+							"\\display" : {},
+							"\\files" : {
+								"\\list.son" : "FILE"
+							},
+							"\\keyboard" : {},
+							"\\mouse" : {
+								"\\mouse.json" : "FILE"
+							}
+						},
+						"\\temp_log" : {}
+					},
+					"\\directory.json" : "FILE",
+					"\\sys_dat.json" : "FILE"
+				},
+				"\\static" : {
+					"\\css" : {},
+					"\\img" : {
+						"\\icons" : {
+							"\\img1.png" : "FILE",
+							"\\img2.jpg" : "FILE",
+							"\\testimg.jpg" : "FILE"
+						},
+						"\\favicon.ico" : "FILE"
+					},
+					"\\js" : {},
+					"\\temp" : {},
+					"\\txt" : {
+						"\\怒りの悪魔三の六.txt" : "FILE"
+					}
+				},
+				"\\templates" : {},
+				"\\desk_flask.py" : "FILE",
+				"\\server.py" : "FILE"
+			},
+			"\\FlaskApi" : {
+				"\\data" : {
+					"\\parsings" : {
+						"\\formatted" : {},
+						"\\parsed" : {},
+						"\\response" : {}
+					}
+				},
+				"\\logs" : {
+					"\\prores.json" : "FILE"
+				},
+				"\\static" : {
+					"\\css" : {
+						"\\HomePage.css" : "FILE"
+					},
+					"\\img" : {
+						"\\icons" : {}
+					},
+					"\\js" : {},
+					"\\txt" : {}
+				},
+				"\\templates" : {
+					"\\HomePage.html" : "FILE"
+				},
+				"\\flask_app.py" : "FILE"
+			}
+		},
+		"\\GPT" : {
+			"\\Main" : {
+				"\\API_Features" : {
+					"\\API_Features[v1.0].json" : "FILE"
+				},
+				"\\Payloads" : {
+					"Payloads[v1.0].json5" : "FILE"
+				},
+				"\\Rules" : {
+					"\\Rules_List[v1.0].json" : "FILE",
+					"\\Rules_List[v1.1].json" : "FILE"
+				},
+				"\\Schemas" : {
+					"\\Browser" : {
+						"\\BrowserAPI_Schema.yaml" : "FILE"
+					},
+					"\\Client" : {
+						"\\ClientAPI_Schema.yaml" : "FILE"
+					},
+					"\\Flask" : {
+						"\\FlaskAPI_Schema[v0.1].yaml" : "FILE",
+						"\\FlaskAPI_Schema[v0.2].yaml" : "FILE"
+					}
+				}
+			}
+			
+		},
+		"\\Website" : {
+			"\\data" : {
+				"\\Logs" : {},
+				"\\System" : {},
+				"\\User" : {}
+			},
+			"\\docs" : {
+				"\\#PLA-1.docx" : "FILE",
+				"\\#PLA-AMT.docx": "FILE",
+				"\\#PLA-BQ.docx" : "FILE",
+				"\\#PLA-PAY.docx" : "FILE",
+				"\\#PLA-RQ.docx" : "FILE"
+			},
+			"\\flask_app.py" : "FILE"
+		}
+	} 
+}

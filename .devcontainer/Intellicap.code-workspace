@@ -45,7 +45,6 @@
         // Python
         "python.analysis.logLevel": "Trace",
         "python.defaultInterpreterPath": "C:/Program Files/Python312/python.exe",
-        "python.analysis.typeCheckingMode": "strict"
     },
     "extensions": {
         "recommendations": [

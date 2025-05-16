@@ -1,0 +1,121 @@
+{
+    "Auth" : {
+        "626" : {
+            "user" : "gpt"
+        },
+        "666" : {
+            "user" : "Angry"
+        }
+    },
+    "Payload" : {
+        "Description" : {
+            "Uses" : ["GPT", "Local", "Action"]
+        },
+        "schema": {
+            "Action_File" : {
+                "function_name" : {
+                    "action" : "action file_name",
+                    "api_key" : "key",
+                    "args" : {
+                        "function" : "fxcall",
+                        "arg1" : "value",
+                        "arg2" : "value"
+                    } 
+                }
+            }
+        },    
+        "actions": {
+            "mouse" : {
+                "move_mouse"  : {
+                    "action" : "mouse",
+                    "api_key" : "key",
+                    "args": {
+                        "function" : "move",
+                        "x": "int",
+                        "y": "int"
+                    }
+                },
+                "click_mouse" : {
+                    "action": "mouse",
+                    "api_key" : "key",
+                    "args": {
+                        "function" : "click",
+                        "x": "int",
+                        "y": "int",
+                        "button": "Right/Left"
+                    }
+                },
+                "drag_mouse" : {
+                    "action": "mouse",
+                    "api_key" : "key",
+                    "args" : {
+                        "function" : "drag",
+                        "x" : "int",
+                        "y" : "int",
+                        "duration" : "int"
+                    }
+                },
+                "scroll_mouse": {
+                    "action": "mouse",
+                    "api_key": "key",
+                    "args": {
+                        "function": "scroll",
+                        "amount": "int"
+                    }
+                },
+                "info" : {
+                    "action": "mouse",
+                    "api_key" : "key",
+                    "args" : {    
+                        "function": "info"
+                    }
+                }
+            },
+            "files" : {
+                "action": "files",
+                "api_key" : "key",
+                "args": {
+                    "function" : "list",
+                    "directory": "C:\\path\\to\\dir"
+                }
+            }
+        }
+    },
+    "Stocks" : {
+        "moo_moo" : {
+            "account" : {
+                "id" : "71028116",
+                "usrname" : "怒りの悪魔三の六bg",
+                "pass" : "Pisces666",
+                "pin" : "918255",
+                "broker_id" : "6796",
+                "paper_id" : {
+                    "US" : {
+                        "margin" : {
+                            "id" : "None",
+                            "value" : "1,000,000",
+                            "p/l%" : "0.00",
+                            "p/l" : "0.00",
+                            "assets" : {
+                                "cash" : "0",
+                                "stock" : "0",
+                                "options" : "0",
+                                "etf" : "0"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "webull" : {
+            "account" : {
+                "id" : "",
+                "usrname" : "AngrySatan666",
+                "pass" : "Pisces666",
+                "pin" : "918255",
+                "broker_id" : "5IV16665",
+                "saver_id" : "CUW92L8A"
+            }
+        }
+    }
+}

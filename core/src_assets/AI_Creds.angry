@@ -1,0 +1,24 @@
+moomoo (
+    [username = 怒りの悪魔三の六, id = 71028116],
+    [username = , id = ]
+),
+webull (
+    [username = , id = ],
+    [username = , id = ]
+),
+cold_wallets (
+    [pub = , priv = ],
+    [pub = , priv = ]
+),
+hot_wallets (
+    [pub = , priv = ]
+    [pub = , priv = ]
+),
+binance (
+    [username = , id = ],
+    [username = , id = ]
+),
+coinbase (
+    [username = , id = ],
+    [username = , id = ]
+)

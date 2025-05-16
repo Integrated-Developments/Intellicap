@@ -1,0 +1,6 @@
+{
+    "Net Stat Test": "{'Bytes': {'Received': '2435328', 'Sent': '1514076'}, 'Non-Unicast_Packets': {'Received': '399426', 'Sent': '10452'}}",
+    "Download Speed": "66.89 Mbps",
+    "Upload Speed": "21.06 Mbps",
+    "Ping": "51.875 ms"
+}

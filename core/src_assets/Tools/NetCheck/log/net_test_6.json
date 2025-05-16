@@ -1,0 +1,23 @@
+{
+    "Net Stat": {
+        "Unicast_Packets": {
+            "Received": "780540",
+            "Sent": "448644"
+        },
+        "Non_Unicast_Packets": {
+            "Received": "16128",
+            "Sent": "3234"
+        },
+        "Unknown_Protocols": "0"
+    },
+    "Speed Test": {
+        "Download Speed": "62.12 Mbps",
+        "Upload Speed": "31.47 Mbps",
+        "Ping": "32.502 ms"
+    },
+    "Bandwidth Usage": {
+        "Bytes Sent": "32.06 KB",
+        "Bytes Received": "61.67 KB"
+    },
+    "Ping Test": "Ping to 8.8.8.8: 42.71 ms"
+}

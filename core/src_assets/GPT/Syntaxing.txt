@@ -1,0 +1,94 @@
+# OpenAPI 3.1.0 Documentation Guide
+
+
+YAML stands for "YAML Ain't Markup Language". It’s a recursive acronym, which means the name refers to itself humorously. YAML is designed for simplicity and readability, particularly in configuration files and data serialization.
+
+Initially, YAML stood for "Yet Another Markup Language", but the name was later updated to emphasize that it’s meant for data, not document markup like HTML or XML.
+
+## Basic Structure
+Every OpenAPI file has a few required fields: `openapi`, `info`, `servers`, and `paths`.
+
+```yaml
+openapi: 3.1.0
+info:
+  title: Your API Title
+  description: Description of your API functionality
+  version: 1.0.0
+
+servers:
+  - url: https://example.com
+    description: Production server (example.com)
+
+paths:
+  /endpoint:
+    <HTTP Method>:   # Typically 'get', 'post', 'put', or 'delete'
+      operationId: uniqueIdentifierForOperation
+      summary: Brief description of what this endpoint does
+      description: A more detailed explanation of the endpoint.
+      requestBody:  # Only for methods that send data, such as POST
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                property1:
+                  type: string
+                  description: Description of property1
+                  example: Example value for property1
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  key:
+                    type: string
+                    example: Example response
+
+
+
+Key Components Explained
+1. info Section
+title: The name of your API.
+description: A high-level summary of the API’s purpose.
+version: The version of your API (use semantic versioning, e.g., 1.0.0).
+2. servers Section
+Defines the servers where the API can be accessed. Each server entry includes:
+
+url: Base URL of the server.
+description: Description of the server (e.g., Production, Development).
+3. paths Section
+Each path represents an endpoint, and each endpoint can have multiple HTTP methods (e.g., get, post).
+
+HTTP Method: Defines the operation type (get, post, etc.).
+operationId: A unique identifier for the operation.
+summary: A short, concise description of the operation.
+description: A more detailed explanation (optional).
+requestBody: Used for methods like post or put where data is sent.
+required: Boolean indicating if the request body is mandatory.
+content: Defines the content type and schema (usually application/json).
+schema: Describes the structure of the expected data.
+type: Data type (usually object for JSON payloads).
+properties: Defines each field in the JSON object, with type, description, and example.
+4. responses Section
+Specifies possible responses with HTTP status codes (e.g., "200", "400").
+
+description: Description of the response.
+content: Specifies the content type and schema of the response.
+schema: Describes the structure of the response data.
+type: Data type (usually object for JSON responses).
+properties: Fields returned in the response with type, description, and example
+
+Common Data Types in OpenAPI
+string: Text values.
+integer: Whole numbers.
+boolean: true or false values.
+array: A list of items (define items with items property).
+object: A JSON object with nested fields.
+Tips for Writing OpenAPI
+Indentation: YAML is sensitive to spaces. Use consistent indentation, typically two spaces.
+Quotes in Status Codes: Always wrap status codes in quotes (e.g., "200") to avoid parsing errors.
+Testing: Use tools like Swagger Editor to validate your OpenAPI schema.

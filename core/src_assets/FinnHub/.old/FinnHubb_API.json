@@ -1,0 +1,31 @@
+{ "Finn_API" : {
+    "Limits" : {
+        "Per_Minute" : 60,
+        "Per_Second" : 30,
+        "Per_Month" : 10000,
+        "Pre-Market" : "4:00 AM",
+        "Open" : "9:30 AM",
+        "After-Market" : "4:00 PM",
+        "Overnight" : "8:00 PM",
+        "Total_Time" : "16 Hours",
+        "Min_per_Day" : 1440,
+        "Min_per_16h" : 960,
+        "Min_per_Month" : 33120,
+        "Min_per_16Month" : 22080,
+        "Min_per_Month+Weekend" : 44640
+    },
+    "Accounts" : {
+        "怒りの悪魔" : {
+            "email" : "666AngrySatan@gmail.com",
+            "user" : "怒りの悪",
+            "pass" : "tfugobx",
+            "key" : "crn2ajpr01qmi0u6jsigcrn2ajpr01qmi0u6jsj0"
+        },
+        "AngrySatan" : {
+            "email" : "Sir.Barden15@gmail.com",
+            "user" : "AngrySatan",
+            "pass" : "tfugobx",
+            "key" : "crn484hr01qmi0u6o6p0crn484hr01qmi0u6o6pg"
+        }
+    }
+}}

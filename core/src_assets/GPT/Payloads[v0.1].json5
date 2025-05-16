@@ -1,0 +1,11 @@
+{"PayLoads" : {
+    // Services
+    "FlaskAPI" : {
+        // Actions
+        "Parse" : {
+            "ext" : "(The files intened extension, such as .css, .py, .json)", // Try to assume the file type if user didnt state what the ext is
+            "format" : "(Boolean accepts 0/False and 1/True)", // Default 0 unless user states
+            "code" : "(Your parsed code)", // cojaposjco
+        }
+    }
+}}

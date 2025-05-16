@@ -1,0 +1,108 @@
+{"users" : {
+    "AngrySatan666" : {
+        "email" : "angrysatan666@outlook.com",
+        "rec_email" : "666angrysatan@gmail.com",
+        "pass" : "tfukgobx",
+        "keys" : {
+            "status" : "active",
+            "la_ntry" : "NULL",
+            "lvl" : "ADMIN",
+            "key" : "jsifhenaiag38rnfka"
+        },
+        "Acc" : {
+            "div_12" : {
+                "shares" : 6,
+                "dep_tot" : 60,
+                "withd_tot" : 0
+            },
+            "div_4" : {
+                "shares" : 0,
+                "dep_tot" : 0,
+                "withd_tot" : 0
+            },
+            "crp_hld" : {
+                "shares" : 0,
+                "dep_tot" : 0,
+                "withd_tot" : 0
+            },
+            "crp_sclp" : {
+                "shares" : 0,
+                "dep_tot" : 0,
+                "withd_tot" : 0
+            },
+            "opt_7" : {
+                "shares" : 0,
+                "dep_tot" : 0,
+                "withd_tot" : 0
+            },
+            "opt_day" : {
+                "shares" : 0,
+                "dep_tot" : 0,
+                "withd_tot" : 0
+            },
+            "stock_hld" : {
+                "shares" : 0,
+                "dep_tot" : 0,
+                "withd_tot" : 0
+            },
+            "stock_sclp" : {
+                "shares" : 0,
+                "dep_tot" : 0,
+                "withd_tot" : 0
+            }
+        }
+    },
+    "KeeganMeister" : {
+        "email" : "none",
+        "rec_email" : "none",
+        "pass" : "none",
+        "keys" : {
+            "status" : "active",
+            "la_ntry" : "NULL",
+            "lvl" : "MOD",
+            "key" : "none"
+        },
+        "Acc" : {
+            "div_12" : {
+                "shares" : 10,
+                "dep_tot" : 100,
+                "withd_tot" : 0
+            },
+            "div_4" : {
+                "shares" : 0,
+                "dep_tot" : 0,
+                "withd_tot" : 0
+            },
+            "crp_hld" : {
+                "shares" : 0,
+                "dep_tot" : 0,
+                "withd_tot" : 0
+            },
+            "crp_sclp" : {
+                "shares" : 0,
+                "dep_tot" : 0,
+                "withd_tot" : 0
+            },
+            "opt_7" : {
+                "shares" : 0,
+                "dep_tot" : 0,
+                "withd_tot" : 0
+            },
+            "opt_day" : {
+                "shares" : 0,
+                "dep_tot" : 0,
+                "withd_tot" : 0
+            },
+            "stock_hld" : {
+                "shares" : 0,
+                "dep_tot" : 0,
+                "withd_tot" : 0
+            },
+            "stock_sclp" : {
+                "shares" : 0,
+                "dep_tot" : 0,
+                "withd_tot" : 0
+            }
+        }
+    }
+}}

@@ -1,0 +1,138 @@
+openapi: 3.1.0
+info:
+  title: Complete Parse API
+  description: API for appending JSON data to logs and parsing code with format options.
+  version: 0.1.1
+
+servers:
+  - url: https://api666.pythonanywhere.com
+    description: Production server (PythonAnywhere)
+
+paths:
+  /append_json:
+    post:
+      operationId: appendJsonToLog
+      summary: Append Prompt-Response Pair to Log
+      description: Accepts JSON data from GPT and appends it to `prores.json` in the `logs` folder.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                Prompt:
+                  type: string
+                  description: User input or question.
+                  example: What is the capital of France?
+                Response:
+                  type: string
+                  description: GPT-generated response.
+                  example: The capital of France is Paris
+      responses:
+        "200":
+          description: Operation successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  message:
+                    type: string
+                    example: Data appended successfully
+        "500":
+          description: Server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: error
+                  message:
+                    type: string
+                    example: Error message detailing the issue
+
+  /get_data:
+    post:
+      operationId: getFileData
+      summary: Retrieve File Content
+      description: Returns content if file exists.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                file_path:
+                  type: string
+                  example: logs/prores.json
+      responses:
+        "200":
+          description: File content retrieved
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  content:
+                    type: string
+                  status:
+                    type: string
+                    example: success
+        "400":
+          description: No file path provided
+        "404":
+          description: File not found
+
+  /save_code:
+    post:
+      operationId: parse
+      summary: Parse and Save Code
+      description: Accepts code, file extension, and format preference.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                ext:
+                  type: string
+                  description: File extension for the code file.
+                  example: .py
+                format:
+                  type: boolean
+                  description: Format file or not.
+                  example: true
+                code:
+                  type: string
+                  description: Code content to be saved.
+                  example: |
+                    def hello_world():
+                        print("Hello, world!")
+      responses:
+        "200":
+          description: Code and payload saved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Code and payload saved successfully
+                  code_filename:
+                    type: string
+                    description: Path of saved code file.
+                    example: data/parsings/formatted/parsed_code_20231102103000.py
+                  json_filename:
+                    type: string
+                    description: Path of saved JSON payload.
+                    example: data/parsings/parsed/parsed_payload_20231102103000.json
+

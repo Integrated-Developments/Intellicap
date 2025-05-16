@@ -1,0 +1,49 @@
+ "api_data" : {
+        "moo_moo" : {
+            "account" : {
+                "id" : "71028116",
+                "usrname" : "怒りの悪魔三の六bg",
+                "pass" : "Pisces666",
+                "pin" : "918255",
+                "broker_id" : "6796",
+                "saver_id" : "",
+                "paper_id" : {
+                    "US" : {
+                        "margin" : {
+                            "id" : "None",
+                            "value" : "1,009,354.89",
+                            "p/l%" : "0.94",
+                            "p/l" : "9,354.89",
+                            "assets" : {
+                                "cash" : "100",
+                                "stock" : "0",
+                                "options" : "0",
+                                "etf" : "0"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "webull" : {
+            "account" : {
+                "id" : "",
+                "usrname" : "AngrySatan666",
+                "pass" : "Pisces666",
+                "pin" : "918255",
+                "broker_id" : "5IV16665",
+                "saver_id" : "CUW92L8A",
+                "paper_id" : {
+                    "US" : {
+                        "stock" : {},
+                        "options" : {},
+                        "forex" : {}
+                    }
+                }
+            },
+            "keys" : {
+                "" : "",
+                "acc_id" : ""
+            }
+        }
+},

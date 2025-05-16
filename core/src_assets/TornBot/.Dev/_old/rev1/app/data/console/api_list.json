@@ -1,0 +1,246 @@
+{
+	"URLS" : {
+		"Base_Api" : {
+			"v1" : "https://api.torn.com/",
+			"v2" : "https://api.torn.com/v2/"
+		},
+		"IMG" : {
+			"Large" : "https://www.torn.com/images/items/[ITEM_ID]/large.png",
+			"L_px" : [100, 50],
+			"Medium" : "https://www.torn.com/images/items/[ITEM_ID]/medium.png",
+			"M_px" : [60, 30],
+			"Small" : "https://www.torn.com/images/items/[ITEM_ID]/small.png",
+			"S_px" : [38, 19]
+		},
+		"v1" : {
+			"User" : {
+				"Base" : "https://api.torn.com/user/[USER_ID]?selections=[SELECTION]&key=[KEY]&comment=[COMMENT]"
+				"Selections" : [
+					"ammo",
+					"attacks",
+					"attacksfuil",
+					"bars",
+					"basic",
+					"battlestats",
+					"bazaar",
+					"cooldowns",
+					"crimes",
+					"discord",
+					"display",
+					"education",
+					"equipment",
+					"events",
+					"gym",
+					"hof",
+					"honors",
+					"icons",
+					"jobpoints",
+					"log",
+					"medals",
+					"merits",
+					"messages",
+					"missions",
+					"money",
+					"networth",
+					"newevents",
+					"newmessages",
+					"notifications",
+					"perks",
+					"personalstats",
+					"profile",
+					"properties",
+					"refills",
+					"reports",
+					"revives",
+					"revivesfull",
+					"skills",
+					"stocks",
+					"timestamp",
+					"travel",
+					"weaponexp",
+					"workstats"
+				]
+			},
+			"Property" : {
+				"Base" : "https://api.torn.com/property/[PROPERTY_ID]?selections=[SELECTION]&key=[KEY]&comment=[COMMENT]"
+				"Selections" : [
+					"property",
+					"timestamp"
+				]
+			},
+			"Faction" : {
+				"Base" : "https://api.torn.com/faction/[FACTION_ID]?selections=[SELECTION]&key=[KEY]&comment=[COMMENT]",
+				"Selections" : [
+					"basic",
+					"chain",
+					"hof",
+					"rankedwars",
+					"territory",
+					"timestamp"
+				]
+			},
+			"Company" : {
+				"Base" : "https://api.torn.com/company/[COMPANY_ID]?selections=[SELECTION]&key=[KEY]&comment=[COMMENT]",
+				"Selections" : [
+					"employees",
+					"profile",
+					"timestamp"
+				]
+			},
+			"Market" : {
+				"Base" : "https://api.torn.com/market/[ITEM_ID]?selections=[SELECTION]&key=[KEY]&comment=[COMMENT]",
+				"Selections" : [
+					"bazaar",
+					"itemmarket",
+					"pointsmarket",
+					"timestamp"
+				]
+			},
+			"Torn" : {
+				"Base" : "https://api.torn.com/faction/[FACTION_ID]?selections=[SELECTION]&key=[KEY]&comment=[COMMENT]",
+				"Selections" : [
+					"bank",
+					"cards",
+					"cityshops",
+					"companies",
+					"competition",
+					"dirtybombs",
+					"education",
+					"factiontree",
+					"gyms",
+					"honors",
+					"items",
+					"logcategories",
+					"logtypes",
+					"medals",
+					"organisedcrimes",
+					"pawnshop",
+					"pokertables",
+					"properties",
+					"rackets",
+					"raids",
+					"rankedwars",
+					"rockpaperscissors",
+					"searchforcash",
+					"shoplifting",
+					"stats",
+					"stocks",
+					"territorynames",
+					"territorywars",
+					"timestamp",
+				]
+			}
+		},
+		"v2" : {
+			"User" : {
+				"Base" : "",
+				"Curl" : "curl -X 'GET' 'https://api.torn.com/v2/user/[SELECTION]?[PARAMETERS]' -H 'accept: application/json' -H 'Authorization: ApiKey [KEY]'",
+				"Selections" : {
+					"attacks" : {
+						"limit" : "Max 100",
+						"sort" : "DESC or ASC",
+						"to" : "Timestamp Start",
+						"from" : "Timestamp End"
+					},
+					"attacksfull" : {
+						"limit" : "Max 1000",
+						"sort" : "DESC or ASC",
+						"to" : "Timestamp Start",
+						"from" : "Timestamp End"
+					},
+					"bounties" : {},
+					"calendar" : {},
+					"crimes" : {},
+					"enlistedcars" : {},
+					"factionbalance" : {},
+					"forumfeed" : {},
+					"forumfriends" : {},
+					"forumposts" : {},
+					"forumsubscribedthreads" : {},
+					"forumthreads" : {},
+					"hof" : {},
+					"itemmarket" : {},
+					"jobranks" : {},
+					"organizedcrime" : {},
+					"personalstats" : {},
+					"races" : {},
+					"timestamp" : {},
+					"ammo" : {},
+					"bars" : {},
+					"basic" : {},
+					"battlestats" : {},
+					"bazaar" : {},
+					"cooldowns" : {},
+					"criminalrecord" : {},
+					"discord" : {},
+					"display" : {},
+					"education" : {},
+					"equipment" : {},
+					"events" : {},
+					"gym" : {},
+					"honors" : {},
+					"icons" : {},
+					"inventory" : {},
+					"jobpoints" : {},
+					"log" : {},
+					"medals" : {},
+					"merits" : {},
+					"messages" : {},
+					"missions" : {},
+					"money" : {},
+					"networth" : {},
+					"newevents" : {},
+					"newmessages" : {},
+					"notifications" : {}, 
+					"perks" : {}, 
+					"profile" : {},
+					"properties" : {},
+					"refills" : {},
+					"reports" : {},
+					"revives" : {},
+					"revivesfull" : {},
+					"skills" : {},
+					"stocks" : {},
+					"travel" : {},
+					"weaponexp" : {},
+					"workstats" : {}
+				}
+			},
+			"Property" : {
+				"Base" : "",
+				"Curl" : "curl -X 'GET' 'https://api.torn.com/v2/property/[SELECTION]?[PARAMETERS]' -H 'accept: application/json' -H 'Authorization: ApiKey [KEY]'",
+				"Selections" : {}
+			},
+			"Faction" : {
+				"Base" : "",
+				"Curl" : "curl -X 'GET' 'https://api.torn.com/v2/faction/[SELECTION]?[PARAMETERS]' -H 'accept: application/json' -H 'Authorization: ApiKey [KEY]'",
+				"Selections" : {}
+			},
+			"Company" : {
+				"Base" : "",
+				"Curl" : "curl -X 'GET' 'https://api.torn.com/v2/company/[SELECTION]?[PARAMETERS]' -H 'accept: application/json' -H 'Authorization: ApiKey [KEY]'",
+				"Selections" : {}
+			},
+			"Market" : {
+				"Base" : "",
+				"Curl" : "curl -X 'GET' 'https://api.torn.com/v2/market?[SELECTION]?[PARAMETERS]' -H 'accept: application/json' -H 'Authorization: ApiKey [KEY]'",
+				"Selections" : {
+					"itemmarket" : {
+						"id" : "Item ID",
+						"bonus" : "Sort weapons by their bonus",
+						"sort" : "DESC or ASC",
+						"offset" : "Remove this many listings first"
+					},
+					"pointsmarket" : {
+						"No Parameters" : "None"
+					}
+				}
+			},
+			"Torn" : {
+				"Base" : "",
+				"Curl" : "curl -X 'GET' 'https://api.torn.com/v2/torn/[SELECTION]?[PARAMETERS]' -H 'accept: application/json' -H 'Authorization: ApiKey [KEY]'",
+				"Selections" : {}
+			}
+		}
+	}
+}

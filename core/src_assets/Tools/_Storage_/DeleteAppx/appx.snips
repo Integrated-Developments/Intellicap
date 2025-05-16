@@ -1,0 +1,42 @@
+﻿
+
+# Show All Users Installed Packages
+Get-AppxPackage -AllUsers | Select Name, PackageFullName, Status, InstallLocation
+
+# Show All Packages for the Current User
+Get-AppxPackage | Select Name, PackageFullName, InstallLocation
+
+# Filter Microsoft Specific
+Get-AppxPackage -AllUsers | Where-Object { $_.Name -match "Microsoft" } | Select Name, PackageFullName
+
+# List Running 
+Get-Process | Select ProcessName, Id
+
+# Corelate Running with Appx Package
+$RunningApps = Get-Process | Select ProcessName
+Get-AppxPackage -AllUsers | Where-Object { $RunningApps -contains $_.Name } | Select Name, PackageFullName
+
+# List Provisioned Apps
+Get-AppxProvisionedPackage -Online | Select DisplayName, PackageName
+
+# Check if Pack is disabled
+Get-AppxPackage -AllUsers | Where-Object { $_.Status -eq "Disabled" } | Select Name, PackageFullName
+
+# Check if a specific app is installed
+Get-AppxPackage -AllUsers -Name "Microsoft.WindowsStore"
+
+# Uninstall for Current User
+Get-AppxPackage *PackageName* | Remove-AppxPackage
+
+# Uninstall for All
+Get-AppxPackage -AllUsers *PackageName* | Remove-AppxPackage -AllUsers
+
+# Remove Proisioned Apps
+Get-AppxProvisionedPackage -Online | Where-Object { $_.PackageName -match "PackageName" } | Remove-AppxProvisionedPackage -Online
+
+
+
+
+
+
+

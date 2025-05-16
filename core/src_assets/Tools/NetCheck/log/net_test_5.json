@@ -1,0 +1,18 @@
+{
+    "Net Stat": {
+        "Unicast_Packets": {
+            "Received": "129180",
+            "Sent": "97644"
+        },
+        "Non_Unicast_Packets": {
+            "Received": "11574",
+            "Sent": "2796"
+        },
+        "Unknown_Protocols": "0"
+    },
+    "Speed Test": {
+        "Download Speed": "51.93 Mbps",
+        "Upload Speed": "34.04 Mbps",
+        "Ping": "39.712 ms"
+    }
+}
