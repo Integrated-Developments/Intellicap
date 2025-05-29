@@ -45,6 +45,7 @@
         // Python
         "python.analysis.logLevel": "Trace",
         "python.defaultInterpreterPath": "C:/Program Files/Python312/python.exe",
+        "makefile.configureOnOpen": true,
     },
     "extensions": {
         "recommendations": [
@@ -91,7 +92,6 @@
             "ms-vscode-remote.remote-ssh",
             "ms-vscode-remote.remote-ssh-edit",
             // Git Tools
-            "eamodio.gitlens",
             "mhutchie.git-graph",
             // Formatting and Linting
             "esbenp.prettier-vscode",

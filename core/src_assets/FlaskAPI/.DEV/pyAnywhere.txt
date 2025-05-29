@@ -1,3 +1,0 @@
-email = vawefeb839@nestvia.com
-user = API666
-pass = tfukgobx
