@@ -142,7 +142,10 @@
     // _FILES \\
         "files.autoSave": "onFocusChange",
         "files.associations": {
-            "copyright": "plaintext"
+            "copyright": "plaintext",
+            "*.config": "ini",
+            "*.conf": "ini",
+            "*.cfg": "ini"
         },
         "files.exclude": {
             "**/.DS_Store": false,

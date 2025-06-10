@@ -1,0 +1,144 @@
+//<!-- Payload Schematics Format 1 ----->
+{
+    "Meta": {
+        "File": "payload.jsonc",
+        "Desc": "Configure Payload Schematic",
+        "Version": "0.1.2",
+        "Date": "6.9.25",
+        "Int": "6.9.25",
+        "Dev": "AngrySatan666"
+    },
+    "Schema": {
+        "gpt": {
+            "type": "object",
+            "properties": {
+                "key": {
+                    "type": "string",
+                    "required": true,
+                    "desc": "Authorization key for API"
+                },
+                "id": {
+                    "type": "string",
+                    "required": true,
+                    "desc": "Unique Identifier for the Payload Event"
+                },
+                "ip": {
+                    "type": "string",
+                    "required": true,
+                    "desc": "IP Address of the Payload Sender, if applicable"
+                },
+                "stamp": {
+                    "type": "string",
+                    "required": true,
+                    "desc": "Timestamp of the Payload's Send"
+                },
+                "action": {
+                    "type": "string",
+                    "required": true,
+                    "desc": "Tells the API Which Action to do with the Payload"
+                },
+                "arguments": {
+                    "type": "array",
+                    "required": false,
+                    "desc": "Further Configures the Actions with the Payload",
+                    "items": {
+                        "type": "object",
+                        "patternProperties": {
+                            "^--[a-zA-Z0-9_-]+$": {
+                                "type": "array",
+                                "required": true,
+                                "desc": "Arguments for the CLI Command",
+                                "items": {
+                                    "type": "string",
+                                    "desc": "Argument Value"
+                                }
+                            },
+                            "minProperties": 1,
+                            "maxProperties": 1,
+                            "additionalProperties": false
+                        }
+                    }
+                },
+                "attachments": {
+                    "type": "boolean",
+                    "required": false,
+                    "desc": "Indicates if the Payload has Attached Files or Data"
+                },
+                "attached": {
+                    "type": "array",
+                    "desc": "Array of attached files, each as base64 or multipart",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "base64": {
+                                "type": "object",
+                                "desc": "Base64-encoded file attachment",
+                                "properties": {
+                                    "name": { "type": "string", "desc": "File name" },
+                                    "type": { "type": "string", "desc": "MIME type" },
+                                    "size": { "type": "integer", "desc": "File size in bytes" },
+                                    "data": { "type": "string", "desc": "Base64-encoded data" },
+                                    "field": { "type": "string", "desc": "Field name" }
+                                },
+                                "required": ["name", "type", "size", "data", "field"]
+                            },
+                            "multipart": {
+                                "type": "object",
+                                "desc": "Multipart file attachment (file sent separately)",
+                                "properties": {
+                                    "id": { "type": "string", "desc": "Attachment ID" },
+                                    "name": { "type": "string", "desc": "File name" },
+                                    "mime": { "type": "string", "desc": "MIME type" },
+                                    "size": { "type": "integer", "desc": "File size in bytes" },
+                                    "field": { "type": "string", "desc": "Field name" }
+                                },
+                                "required": ["id", "name", "mime", "size", "field"]
+                            }
+                        },
+                        "additionalProperties": false
+                    }
+                },
+                "comments": {
+                    "type": "array",
+                    "items": { "type": "string" },
+                    "required": false,
+                    "desc": "Any Comments or Notes for the Payload"
+                }
+            }
+        }
+    },
+    "Example": {
+        "key": "0ifgn[08qw0gfcrq0gfm-hki",
+        "id": "gpt-12",
+        "ip": "10.0.0.35",
+        "stamp": "6.9.25:10:05:01.028",
+        "action": "move",
+        "arguments": [
+            {"--target": ["core/.config/Settings.json", "core/files/settings.json"]},
+            {"--dest": ["core/.config/backup/Settings.json"]}
+        ],
+        "attachments": true,
+        "attached": [
+            {
+                "base64": {
+                    "name": "hello.png",
+                    "mime": "image/png",
+                    "size": 1024,
+                    "data": "BASE64-ENCODED-DATA",
+                    "field": "file1"
+                },
+                "multipart": {
+                    "id": "mtp-137",
+                    "name": "hello.txt",
+                    "mime": "text/plain",
+                    "size": 512,
+                    "field": "file2"
+                }
+            }
+        ],
+        "comments": [
+            "Backing up Settings.json",
+            "Copying to ouput directory"
+        ]
+    }
+}

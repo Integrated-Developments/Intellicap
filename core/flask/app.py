@@ -1,10 +1,24 @@
+#!/usr/bin/env python3
+
+# <!-- [SS-0]: Metadata ----->
+File = 'app.py'
+Desc = 'Flask Application Main Runner'
+Version = '0.1.1'
+Date = '6.9.25'
+Int = '6.9.25'
+Dev = 'AngrySatan666'
+
+# <!-- [SS-1]: Imports ----->
 from flask import Flask
 from flask_socketio import SocketIO
 
+# <!-- [SS-2]: Global Variables ----->
 socketio = SocketIO()
 
+# <!-- [SS-3]: Helper Functions ----->
+
+# <!-- [SS-4]: Functions ----->
 def create_app():
-# <!-- Initiate Flask and Config ----->
     app = Flask(__name__)
     app.config['SECRET_KEY'] = '直腸暴行海賊'
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///intellicap.db'
@@ -24,13 +38,13 @@ def create_app():
     app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 31536000  # 1 year for static files
 
 # <!-- Register & Config bp's ----->
-    from core.bp.auth_bp import auth_bp
-    from core.bp.user_bp import user_bp
-    from core.bp.code_bp import code_bp
-    from core.bp.main_bp import main_bp
+    from bp.admin_bp import admin_bp
+    from bp.auth_bp import auth_bp
+    from bp.user_bp import user_bp
+    from bp.main_bp import main_bp
+    app.register_blueprint(admin_bp, url_prefix='/admin')
     app.register_blueprint(auth_bp, url_prefix='/auth')
     app.register_blueprint(user_bp, url_prefix='/user')
-    app.register_blueprint(code_bp, url_prefix='/code')
     app.register_blueprint(main_bp, url_prefix='/')
 
     socketio.init_app(app, cors_allowed_origins="*")
