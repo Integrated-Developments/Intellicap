@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
+'''Flask Application Main Runner'''
 
 # <!-- [SS-0]: Metadata ----->
-File = 'app.py'
-Desc = 'Flask Application Main Runner'
-Version = '0.1.1'
-Date = '6.9.25'
-Int = '6.9.25'
-Dev = 'AngrySatan666'
+FILE = 'app.py'
+DESC = 'Flask Application Main Runner'
+VERSION = '0.1.1'
+DATE = '6.9.25'
+INT = '6.9.25'
+DEV = 'AngrySatan666'
 
 # <!-- [SS-1]: Imports ----->
 from flask import Flask
@@ -19,6 +20,7 @@ socketio = SocketIO()
 
 # <!-- [SS-4]: Functions ----->
 def create_app():
+    '''Create and configure the Flask application instance.'''
     app = Flask(__name__)
     app.config['SECRET_KEY'] = '直腸暴行海賊'
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///intellicap.db'

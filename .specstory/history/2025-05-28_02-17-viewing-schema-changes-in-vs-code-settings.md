@@ -3419,7 +3419,730 @@ yup add your suggestions
 
 _**Assistant**_
 
+Here’s your `settings.json` with my suggestions merged in, grouped by section for clarity.  
+**Note:** Comments (`// ...`) are included for your reference—remove them for the actual `settings.json` file, or save as `settings.jsonc` for documentation.
 
+````jsonc
+{
+  // === ENVIRONMENTAL CONFIGS ===
+
+  // --- Workbench ---
+  "workbench.colorTheme": "Default Dark Modern",
+  "breadcrumbs.enabled": true,
+  "breadcrumbs.showProperties": true,
+
+  // --- Editor ---
+  "editor.renderWhitespace": "all",
+  "editor.bracketPairColorization.independentColorPoolPerBracketType": true,
+  "editor.minimap.renderCharacters": true,
+  "editor.guides.bracketPairs": true,
+  "diffEditor.codeLens": true,
+  "editor.inlineSuggest.showToolbar": "onHover",
+  "editor.quickSuggestionsDelay": 0,
+  "editor.screenReaderAnnounceInlineSuggestion": false,
+  "editor.stickyScroll.enabled": true,
+  "editor.tabSize": 4,
+  "editor.insertSpaces": true,
+  "editor.detectIndentation": false,
+  "editor.formatOnSave": true, // Auto-format on save
+  "editor.wordWrap": "on", // Enable word wrap
+  "editor.smoothScrolling": true,
+  "editor.cursorBlinking": "smooth",
+  "editor.renderControlCharacters": true,
+  "editor.renderFinalNewline": true,
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": true
+  },
+
+  // --- Files ---
+  "files.autoSave": "onFocusChange",
+  "files.associations": {
+    "copyright": "plaintext"
+  },
+  "files.exclude": {
+    "**/.DS_Store": false,
+    "**/.git": false,
+    "**/.hg": false,
+    "**/.svn": false,
+    "**/Thumbs.db": false,
+    "desktop.ini": true
+  },
+  "files.trimTrailingWhitespace": true,
+  "files.insertFinalNewline": true,
+
+  // --- Explorer ---
+  "explorer.fileNesting.patterns": {
+    "*.bat": "${capture}.bat.*",
+    "*.c": "${capture}.h, ${capture}.o, ${capture}.obj",
+    "*.cpp": "${capture}.h, ${capture}.hpp, ${capture}.o, ${capture}.obj",
+    "*.css": "${capture}.scss, ${capture}.sass, ${capture}.less, ${capture}.css.map",
+    "*.db": "${capture}.${extname}-*",
+    "*.db3": "${capture}.${extname}-*",
+    "*.env": "${capture}.env.*",
+    "*.go": "${capture}_test.go",
+    "*.h": "${capture}.c, ${capture}.cpp",
+    "*.html": "${capture}.spec.ts, ${capture}.test.ts, ${capture}.test.js, ${capture}.spec.js",
+    "*.ipynb": "${capture}.ipynb-checkpoint",
+    "*.js": "${capture}.js.map, ${capture}.min.js, ${capture}.d.ts",
+    "*.json": "${capture}.schema.json",
+    "*.jsx": "${capture}.js",
+    "*.less": "${capture}.css, ${capture}.css.map",
+    "*.md": "${capture}.mdx",
+    "*.php": "${capture}.blade.php",
+    "*.py": "${capture}.pyc, ${capture}.pyo, ${capture}.pyd",
+    "*.rs": "${capture}_test.rs",
+    "*.s3db": "${capture}.${extname}-*",
+    "*.sdb": "${capture}.${extname}-*",
+    "*.scss": "${capture}.css, ${capture}.css.map",
+    "*.sh": "${capture}.sh.*",
+    "*.sqlite": "${capture}.${extname}-*",
+    "*.sqlite3": "${capture}.${extname}-*",
+    "*.tsx": "${capture}.ts",
+    "*.ts": "${capture}.js",
+    "*.vue": "${capture}.css, ${capture}.scss, ${capture}.spec.js, ${capture}.test.js",
+    "package.json": "package-lock.json, yarn.lock, pnpm-lock.yaml, bun.lockb, bun.lock",
+    "tsconfig.json": "tsconfig.*.json"
+  },
+  "explorer.confirmDelete": false,
+  "explorer.confirmDragAndDrop": false,
+
+  // --- Search & Navigation ---
+  "search.useIgnoreFiles": true,
+  "search.useGlobalIgnoreFiles": true,
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/bower_components": true,
+    "**/dist": true,
+    "**/out": true
+  },
+
+  // --- Git Integration ---
+  "git.autofetch": true,
+  "git.confirmSync": false,
+  "git.enableSmartCommit": true,
+
+  // --- Markdown Preview ---
+  "markdown.preview.breaks": true,
+  "markdown.preview.scrollPreviewWithEditor": true,
+  "markdown.preview.markEditorSelection": true,
+
+  // --- Python Specific ---
+  "python.formatting.provider": "black",
+  "python.linting.enabled": true,
+  "python.linting.pylintEnabled": true,
+  "python.linting.flake8Enabled": false,
+  "python.testing.unittestEnabled": true,
+  "python.testing.pytestEnabled": false,
+
+  // --- Terminal @ OS --WINDOWS---
+  "terminal.integrated.shellIntegration.decorationsEnabled": "both",
+  "terminal.integrated.defaultProfile.windows": "Command Prompt",
+  "terminal.integrated.profiles.windows": {
+    "Git Bash": {
+      "path": "C:\\Program Files\\Git\\bin\\bash.exe"
+    },
+    "Git CLI": {
+      "path": "C:\\Program Files\\Git\\cmd\\git.exe"
+    },
+    "Command Prompt": {
+      "path": "C:\\Windows\\System32\\cmd.exe"
+    },
+    "PowerShell": {
+      "path": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe"
+    },
+    "Python": {
+      "path": "C:\\Users\\angry\\AppData\\Local\\Programs\\Python\\Python310\\python.exe"
+    },
+    "Java": {
+      "path": "C:\\Program Files\\Java\\jdk-21.0.2\\bin\\java.exe"
+    },
+    "Go": {
+      "path": "C:\\Users\\angry\\go\\bin\\gopls.exe"
+    },
+    "ADB": {
+      "path": "C:\\Users\\angry\\AppData\\Local\\Android\\Sdk\\platform-tools\\adb.exe"
+    },
+    "Node.js": {
+      "path": "C:\\Program Files\\nodejs\\node.exe"
+    },
+    "NGROK": {
+      "path": "C:\\Users\\angry\\ngrok\\ngrok.exe"
+    },
+    "Cloudflared": {
+      "path": "C:\\Users\\angry\\cloudflared\\cloudflared.exe"
+    }
+  },
+  "terminal.integrated.env.windows": {
+    "Git Bash_Dir": "C:\\Program Files\\Git\\bin\\bash.exe",
+    "Git Bash_EXE": "C:\\Program Files\\Git\\bin\\bash.exe",
+    "Command Prompt_Dir": "C:\\Windows\\System32\\cmd.exe",
+    "Command Prompt_EXE": "C:\\Windows\\System32\\cmd.exe",
+    "PowerShell_Dir": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+    "PowerShell_EXE": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+    "Python_Dir": "C:\\Users\\angry\\AppData\\Local\\Programs\\Python\\Python310",
+    "Python_EXE": "C:\\Users\\angry\\AppData\\Local\\Programs\\Python\\Python310\\python.exe",
+    "Java_Dir": "C:\\Program Files\\Java\\jdk-21.0.2",
+    "Java_EXE": "C:\\Program Files\\Java\\jdk-21.0.2\\bin\\java.exe",
+    "GO_Dir": "C:\\Users\\angry\\go",
+    "GO_EXE": "C:\\Users\\angry\\go\\bin\\gopls.exe",
+    "ADB_Dir": "C:\\Users\\angry\\AppData\\Local\\Android\\Sdk\\platform-tools",
+    "ADB_EXE": "C:\\Users\\angry\\AppData\\Local\\Android\\Sdk\\platform-tools\\adb.exe",
+    "Node.js_Dir": "C:\\Program Files\\nodejs",
+    "Node.js_EXE": "C:\\Program Files\\nodejs\\node.exe",
+    "NGROK_Dir": "C:\\Users\\angry\\ngrok",
+    "NGROK_EXE": "C:\\Users\\angry\\ngrok\\ngrok.exe",
+    "Cloudflared_Dir": "C:\\Users\\angry\\cloudflared",
+    "Cloudflared_EXE": "C:\\Users\\angry\\cloudflared\\cloudflared.exe"
+  },
+
+  // --- Terminal @ OS --LINUX---
+  "terminal.integrated.defaultProfile.linux": "bash",
+  "terminal.integrated.profiles.linux": {
+    "bash": {
+      "path": "/bin/bash"
+    },
+    "zsh": {
+      "path": "/bin/zsh"
+    },
+    "fish": {
+      "path": "/usr/bin/fish"
+    },
+    "python": {
+      "path": "/usr/bin/python3"
+    },
+    "java": {
+      "path": "/usr/bin/java"
+    },
+    "go": {
+      "path": "/usr/local/go/bin/go"
+    },
+    "adb": {
+      "path": "/usr/bin/adb"
+    },
+    "nodejs": {
+      "path": "/usr/bin/node"
+    },
+    "ngrok": {
+      "path": "/usr/local/bin/ngrok"
+    },
+    "cloudflared": {
+      "path": "/usr/local/bin/cloudflared"
+    }
+  },
+  "terminal.integrated.env.linux": {
+    "BASH_Dir": "/bin/bash",
+    "BASH_EXE": "/bin/bash",
+    "ZSH_Dir": "/bin/zsh",
+    "ZSH_EXE": "/bin/zsh",
+    "FISH_Dir": "/usr/bin/fish",
+    "FISH_EXE": "/usr/bin/fish",
+    "Python_Dir": "/usr/bin/python3",
+    "Python_EXE": "/usr/bin/python3",
+    "Java_Dir": "/usr/bin/java",
+    "Java_EXE": "/usr/bin/java",
+    "GO_Dir": "/usr/local/go/bin/go",
+    "GO_EXE": "/usr/local/go/bin/go",
+    "ADB_Dir": "/usr/bin/adb",
+    "ADB_EXE": "/usr/bin/adb",
+    "Node.js_Dir": "/usr/bin/node",
+    "Node.js_EXE": "/usr/bin/node",
+    "NGROK_Dir": "/usr/local/bin/ngrok",
+    "NGROK_EXE": "/usr/local/bin/ngrok",
+    "Cloudflared_Dir": "/usr/local/bin/cloudflared",
+    "Cloudflared_EXE": "/usr/local/bin/cloudflared"
+  }
+}
+````
+
+Let me know if you want further customization for any language, workflow, or extension!
+
+---
+
+_**User**_
+
+So these next questions wont deal directly with code but are majorly important for this repo to work. I have bought a domain on cloudlflare, and have downloaded cloudflared command line tools, From here, how do I properly create a tunnel into the flaskapp of this repo
+
+---
+
+_**Assistant**_
+
+To create a **Cloudflare Tunnel** to expose your Flask app to the internet securely, follow these steps:
+
+---
+
+### 🟦 **1. Prerequisites**
+- **Cloudflare Account**: Ensure your domain is registered and managed in Cloudflare.
+- **Cloudflared Installed**: You’ve already downloaded the `cloudflared` CLI.
+- **Flask App**: Your Flask app is ready to run (e.g., `flask run`).
+
+---
+
+### 🟩 **2. Authenticate Cloudflared**
+Run the following command to authenticate `cloudflared` with your Cloudflare account:
+```bash
+cloudflared login
+```
+- This will open a browser window.
+- Select your domain and authorize `cloudflared`.
+
+---
+
+### 🟨 **3. Create a Tunnel**
+Run the following command to create a new tunnel:
+```bash
+cloudflared tunnel create flaskapp
+```
+- Replace `flaskapp` with a name for your tunnel.
+- This will generate a **tunnel ID** and create a credentials file (e.g., `~/.cloudflared/<tunnel-id>.json`).
+
+---
+
+### 🟧 **4. Configure the Tunnel**
+Create a configuration file for your tunnel. By default, this file should be located at:
+- **Windows**: `C:\Users\<YourUser>\.cloudflared\config.yml`
+- **Linux/Mac**: `~/.cloudflared/config.yml`
+
+Example `config.yml` for your Flask app:
+```yaml
+tunnel: flaskapp
+credentials-file: C:\Users\<YourUser>\.cloudflared\<tunnel-id>.json
+
+ingress:
+  - hostname: yourdomain.com
+    service: http://localhost:5000
+  - service: http_status:404
+```
+- Replace `yourdomain.com` with your actual domain or subdomain.
+- Replace `localhost:5000` with the address where your Flask app runs.
+
+---
+
+### 🟥 **5. Run the Flask App**
+Start your Flask app locally:
+```bash
+flask run
+```
+- By default, Flask runs on `http://127.0.0.1:5000`.
+
+---
+
+### 🟦 **6. Start the Tunnel**
+Run the tunnel using the configuration file:
+```bash
+cloudflared tunnel run flaskapp
+```
+- This will expose your Flask app to the internet via the domain you configured.
+
+---
+
+### 🟩 **7. Test the Setup**
+- Visit `https://yourdomain.com` in your browser.
+- Your Flask app should now be accessible via the Cloudflare Tunnel.
+
+---
+
+### 🟨 **Optional Enhancements**
+1. **Subdomain Routing**: Use a subdomain like `flaskapp.yourdomain.com` for better organization.
+2. **HTTPS**: Cloudflare automatically provides HTTPS for your domain.
+3. **Background Service**: Run `cloudflared` as a service for persistent tunnels:
+   ```bash
+   cloudflared service install
+   ```
+
+---
+
+Let me know if you encounter any issues or need further clarification!
+
+---
+
+_**User**_
+
+okay so I created the tunnel and credentials ewere given, but then I was warned that my cloudflared cli is out of date, I'm on the gihub repo now for it and HOLY FUCK there is a ton of different artifacts for this... which one do I need?
+Device Specs:
+Device Name	LAPTOP-7GPCJDL9
+Processor	Intel(R) Core(TM) i7-7500U CPU @ 2.70GHz   2.90 GHz
+Installed RAM	12.0 GB (11.9 GB usable)
+Storage	932 GB HDD ST1000LM035-1RK172
+Graphics Card	Intel(R) HD Graphics 620 (128 MB)
+Device ID	8DB009BE-0DB0-441A-A6AF-C0345B94A0F5
+Product ID	00325-95817-19629-AAOEM
+System Type	64-bit operating system, x64-based processor
+Pen and touch	No pen or touch input is available for this display
+Edition	Windows 10 Home
+Version	2009
+Installed on	‎2/‎28/‎2025
+OS Build	19045.5965
+
+
+
+
+---
+
+_**Assistant**_
+
+To update your **Cloudflared CLI** on your Windows 10 Home 64-bit system, you need to download the correct artifact from the GitHub releases page. Based on your system specs, here’s what you should do:
+
+---
+
+### 🟦 **Which Artifact to Download?**
+Look for the **Windows 64-bit executable** in the GitHub release assets. The file you need is:
+
+**`cloudflared-windows-amd64.exe`**
+
+---
+
+### 🟩 **Steps to Update Cloudflared**
+1. **Go to the GitHub Releases Page**:  
+   [Cloudflared Releases](https://github.com/cloudflare/cloudflared/releases)
+
+2. **Find the Latest Release**:  
+   Look for the most recent version (e.g., `2025.x.x`).
+
+3. **Download the Correct File**:  
+   - Locate `cloudflared-windows-amd64.exe` in the list of assets.
+   - Click to download it.
+
+4. **Replace the Old Executable**:  
+   - Locate your current `cloudflared.exe` file (e.g., `C:\Users\<YourUser>\cloudflared\cloudflared.exe`).
+   - Replace it with the newly downloaded `cloudflared-windows-amd64.exe`.
+   - Rename the new file to `cloudflared.exe` (if needed).
+
+5. **Verify the Update**:  
+   Open a terminal and run:
+   ```bash
+   cloudflared --version
+   ```
+   - This should display the updated version.
+
+---
+
+### 🟨 **Optional: Add to PATH**
+If `cloudflared` is not already in your system's PATH, you can add it:
+1. Move `cloudflared.exe` to a permanent directory (e.g., `C:\Program Files\Cloudflared`).
+2. Add that directory to your system's PATH:
+   - Open **Control Panel** → **System** → **Advanced system settings** → **Environment Variables**.
+   - Under **System variables**, find `Path` → **Edit** → **New** → Add the directory path (e.g., `C:\Program Files\Cloudflared`).
+3. Restart your terminal and test with:
+   ```bash
+   cloudflared --version
+   ```
+
+---
+
+Let me know if you need help with any of these steps!
+
+---
+
+_**User**_
+
+Okay, cloudflared now shows the newest version. But just for my own sake, Since the tunnel was built using and outdated CLI should I rebuild/create a new tunnel with new CLI or shouldnt that affect anything
+
+---
+
+_**Assistant**_
+
+No, you **do not need to rebuild the tunnel** just because the `cloudflared` CLI was outdated when you created it. The tunnel configuration and credentials are stored independently of the CLI version, so upgrading the CLI won't invalidate or affect the existing tunnel.
+
+However, here are a few considerations:
+
+---
+
+### 🟢 **When You Don't Need to Rebuild the Tunnel**
+- If the tunnel is working as expected and you can access your Flask app through the domain/subdomain, there's no need to recreate it.
+- The credentials file (`<tunnel-id>.json`) and configuration (`config.yml`) remain valid regardless of the CLI version.
+
+---
+
+### 🟡 **When You Might Consider Rebuilding the Tunnel**
+- If you encounter issues with the tunnel (e.g., connectivity problems, unexpected behavior).
+- If the release notes for the new `cloudflared` version mention breaking changes or improvements to tunnel creation.
+- If you want to ensure the tunnel was created with the latest features or security updates.
+
+---
+
+### 🟠 **What You Can Do Instead**
+If you're concerned about the tunnel's integrity, you can simply **restart the tunnel** with the updated CLI:
+```bash
+cloudflared tunnel run flaskapp
+```
+This ensures the latest CLI is being used to manage the tunnel without needing to recreate it.
+
+---
+
+### 🔵 **Recommendation**
+If everything is working fine, there's no need to rebuild the tunnel. Just continue using the updated CLI for managing and running the tunnel. If issues arise later, you can always recreate it.
+
+---
+
+_**User**_
+
+Okay awesome, Now then, How can I continue on from here to serving my flask_app through this newly created tunnel
+
+---
+
+_**Assistant**_
+
+To serve your Flask app (`user_bp.py`) through the newly created Cloudflare Tunnel, follow these steps:
+
+---
+
+### 🟦 **1. Ensure Your Flask App is Configured Properly**
+You need to have a Flask app instance that registers the `user_bp` blueprint and runs the app. If you don’t already have this, create a main entry point for your Flask app (e.g., `app.py`).
+
+Here’s an example `app.py`:
+
+```python
+from flask import Flask
+from bp.user_bp import user_bp  # Import your blueprint
+
+app = Flask(__name__)  # Create the Flask app instance
+app.register_blueprint(user_bp, url_prefix='/user')  # Register the blueprint
+
+@app.route('/')
+def home():
+    return "Welcome to the Flask App!"
+
+if __name__ == '__main__':
+    app.run(host='127.0.0.1', port=5000)  # Run the app on localhost:5000
+```
+
+---
+
+### 🟩 **2. Test Your Flask App Locally**
+Run the Flask app locally to ensure it works:
+```bash
+python app.py
+```
+- Open your browser and visit `http://127.0.0.1:5000`.
+- Ensure the app is running and accessible locally.
+
+---
+
+### 🟨 **3. Update Your Cloudflare Tunnel Configuration**
+Edit your `config.yml` file (created earlier for the tunnel) to point to your Flask app's local address (`http://127.0.0.1:5000`).
+
+Example `config.yml`:
+```yaml
+tunnel: flaskapp
+credentials-file: C:\Users\<YourUser>\.cloudflared\<tunnel-id>.json
+
+ingress:
+  - hostname: yourdomain.com  # Replace with your domain or subdomain
+    service: http://127.0.0.1:5000
+  - service: http_status:404  # Default fallback for unmatched routes
+```
+
+---
+
+### 🟧 **4. Start the Cloudflare Tunnel**
+Run the tunnel using the updated configuration:
+```bash
+cloudflared tunnel run flaskapp
+```
+- This will expose your Flask app to the internet via the domain or subdomain you configured in `config.yml`.
+
+---
+
+### 🟥 **5. Test the Tunnel**
+- Visit `https://yourdomain.com` (or the subdomain you configured) in your browser.
+- You should see your Flask app served through the Cloudflare Tunnel.
+
+---
+
+### 🟦 **6. Optional: Run Flask and Cloudflared Together**
+To simplify running both the Flask app and the Cloudflare Tunnel, you can use a **process manager** like `tmux`, `screen`, or `concurrently` (if you’re using Node.js tools). Alternatively, you can create a simple script to run both processes.
+
+Example `run.sh` (Linux/Mac):
+```bash
+#!/bin/bash
+# Start Flask app
+python app.py &
+
+# Start Cloudflare Tunnel
+cloudflared tunnel run flaskapp
+```
+
+Example `run.bat` (Windows):
+```bat
+start python app.py
+start cloudflared tunnel run flaskapp
+```
+
+---
+
+### 🟩 **7. (Optional) Run Flask in Production**
+For production, consider using a WSGI server like **Gunicorn** or **Waitress** to serve your Flask app instead of the built-in development server.
+
+Example with Waitress:
+```bash
+pip install waitress
+waitress-serve --host=127.0.0.1 --port=5000 app:app
+```
+
+Update your `config.yml` to point to the Waitress server (`http://127.0.0.1:5000`).
+
+---
+
+Let me know if you encounter any issues or need further clarification!
+
+---
+
+_**User**_
+
+the bp works fine, I need to know how to serve the entire flask app to the cloudflared tunnel, which was named flask, as we are not editing anything within the flask itself such as the bp. 
+
+---
+
+_**Assistant**_
+
+Got it! Since your Flask app and blueprints are already working fine, you just need to serve the **entire Flask app** through the Cloudflare Tunnel named `flask`. Here's how to proceed:
+
+---
+
+### 🟦 **1. Ensure Flask App is Running Locally**
+Make sure your Flask app is running on the default local address (`http://127.0.0.1:5000`) or any other address/port you configured.
+
+Run your Flask app:
+```bash
+python app.py
+```
+
+Verify it works locally by visiting:
+```
+http://127.0.0.1:5000
+```
+
+---
+
+### 🟩 **2. Update the Cloudflare Tunnel Configuration**
+The tunnel you created (`flask`) needs to point to your Flask app's local address. Update the `config.yml` file for the tunnel.
+
+#### Example `config.yml`:
+```yaml
+tunnel: flask
+credentials-file: C:\Users\<YourUser>\.cloudflared\<tunnel-id>.json
+
+ingress:
+  - hostname: yourdomain.com  # Replace with your domain or subdomain
+    service: http://127.0.0.1:5000  # Flask app's local address
+  - service: http_status:404  # Default fallback for unmatched routes
+```
+
+- Replace `yourdomain.com` with the domain or subdomain you want to use for the tunnel.
+- Ensure the `service` points to the local address where your Flask app is running (`http://127.0.0.1:5000`).
+
+---
+
+### 🟨 **3. Start the Cloudflare Tunnel**
+Run the tunnel using the `cloudflared` CLI:
+```bash
+cloudflared tunnel run flask
+```
+
+This will:
+- Use the `flask` tunnel you created earlier.
+- Forward traffic from your domain (e.g., `https://yourdomain.com`) to your Flask app running locally.
+
+---
+
+### 🟧 **4. Test the Tunnel**
+Visit your domain in a browser:
+```
+https://yourdomain.com
+```
+
+You should see your Flask app served through the Cloudflare Tunnel.
+
+---
+
+### 🟥 **5. Optional: Run Flask and Cloudflared Together**
+If you want to simplify running both the Flask app and the Cloudflare Tunnel, you can use a script to start both processes.
+
+#### Example `run.bat` (Windows):
+```bat
+start python app.py
+start cloudflared tunnel run flask
+```
+
+#### Example `run.sh` (Linux/Mac):
+```bash
+#!/bin/bash
+# Start Flask app
+python app.py &
+
+# Start Cloudflare Tunnel
+cloudflared tunnel run flask
+```
+
+---
+
+### 🟦 **6. Notes**
+- **No Changes to Flask**: Since you’re not modifying the Flask app itself, this approach works without touching your blueprints or app logic.
+- **Persistent Tunnel**: If you want the tunnel to run persistently, you can install it as a service:
+  ```bash
+  cloudflared service install
+  ```
+
+Let me know if you encounter any issues or need further clarification!
+
+---
+
+_**User**_
+
+In my app.py, PyLint is highlighting that C0413:wrong-import-position, E0611:no-name-in-module no name "Flask" in flask, another C0413:wrong-import-position, and a Unable to import E0401:import-error on ech from bp.****_bp import ****_bp, so. First, does the flask import and socketio import REQUIRE being at the very top? And if it does not, is there a way in vscodesetting / extension settings, to turn off the highlighting for specifically C0413 'Errors', and lastly, how do I fix the unable to import errors
+
+---
+
+_**Assistant**_
+
+Let’s address your concerns step by step:
+
+---
+
+### 🟦 **1. Do the `flask` and `socketio` imports require being at the top?**
+No, the `flask` and `socketio` imports **do not require being at the top**. However, Python's convention (PEP 8) recommends placing all imports at the top of the file for readability and consistency. Moving them elsewhere is generally discouraged unless absolutely necessary.
+
+If you want to suppress the `C0413:wrong-import-position` warning, you can configure PyLint or VS Code to ignore it (explained below).
+
+---
+
+### 🟩 **2. Suppress `C0413:wrong-import-position` in VS Code**
+You can configure PyLint to ignore `C0413` warnings globally or for specific files.
+
+#### **Option 1: Ignore `C0413` Globally**
+Add the following to your **`.pylintrc`** file (or create one if it doesn’t exist):
+```ini
+[MESSAGES CONTROL]
+disable=C0413
+```
+
+Alternatively, in VS Code, add this to your `settings.json`:
+```json
+"python.linting.pylintArgs": [
+    "--disable=C0413"
+]
+```
+
+#### **Option 2: Ignore `C0413` for Specific Lines**
+Add a comment to the specific lines where the warning occurs:
+```python
+from flask import Flask  # pylint: disable=C0413
+from flask_socketio import SocketIO  # pylint: disable=C0413
+```
+
+---
+
+### 🟨 **3. Fix `E0611:no-name-in-module` and `E0401:import-error` for `flask` and `bp` imports**
+These errors occur because PyLint cannot resolve the imports. Here’s how to fix them:
+
+#### **Step 1: Ensure Flask is Installed**
+Make sure Flask and Flask-SocketIO are installed in your environment:
+```bash
+pip install flask flask-socketio
+```
+
+#### **Step 2: Fix Blueprint Import Errors**
+The 
 
 ---
 
