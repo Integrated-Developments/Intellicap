@@ -1,0 +1,153 @@
+openapi: 3.0.3
+info:
+  title: Intellicap Action API
+  version: "1.0.0"
+  description: API for triggering device actions and file transfers.
+
+paths:
+  /action:
+    post:
+      summary: Trigger an action or file transfer on the device.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [key, action]
+              properties:
+                key:
+                  type: string
+                  description: Authorization Key
+                  pattern: "^\\d{2}-[A-Z][A-Za-z0-9]{10}$"
+                action:
+                  type: string
+                  description: Tells the API which action to perform
+                  enum: [--btc, --ico_conv, --yfpuller]
+                arguments:
+                  type: array
+                  description: Further configures the actions performed
+                  items:
+                    type: object
+                    minProperties: 1
+                    maxProperties: 1
+                    additionalProperties: false
+                    patternProperties:
+                      "^--[a-zA-Z0-9_-]+$":
+                        type: string
+                        description: Argument value
+                attachments:
+                  type: object
+                  description: Attachments for the payload
+                  required: [files]
+                  properties:
+                    files:
+                      type: array
+                      description: Array of attached files
+                      items:
+                        type: object
+                        description: Attached file metadata
+                        properties:
+                          base64:
+                            type: object
+                            required: [name, mime, data]
+                            properties:
+                              name:
+                                type: string
+                                description: Original file name
+                              mime:
+                                type: string
+                                description: MIME type of the file
+                                enum: [image/png, image/jpeg, image/x-icon, image/svg+xml, image/gif, image/webp, text/plain]
+                              data:
+                                type: string
+                                description: Base64 encoded binary data of the file
+                          multipart:
+                            type: array
+                            description: Array of multipart file metadata
+                            items:
+                              type: object
+                              required: [id, name, mime]
+                              properties:
+                                id:
+                                  type: string
+                                  description: Unique identifier for the multipart file
+                                name:
+                                  type: string
+                                  description: Original file name
+                                mime:
+                                  type: string
+                                  description: MIME type of the file
+                                  enum: [image/png, image/jpeg, image/x-icon, image/svg+xml, image/gif, image/webp, text/plain]
+                comment:
+                  type: string
+                  description: Optional comment or chat message from GPT or user
+      responses:
+        '200':
+          description: Action result and optional file attachments
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [status, id, body]
+                properties:
+                  status:
+                    type: integer
+                    description: HTTP status code
+                    enum: [200, 400, 404, 500, 666]
+                  id:
+                    type: string
+                    description: Unique identifier for the payload event
+                  body:
+                    type: object
+                    required: [result, message]
+                    properties:
+                      result:
+                        type: string
+                        description: Result of the action performed
+                        enum: [success, error, warning]
+                      message:
+                        type: string
+                        description: PIPE STDOUT message from the action
+                  attachments:
+                    type: object
+                    required: [files]
+                    properties:
+                      files:
+                        type: array
+                        description: Array of attached files
+                        items:
+                          type: object
+                          description: Attached file metadata
+                          properties:
+                            base64:
+                              type: object
+                              required: [name, mime, data]
+                              properties:
+                                name:
+                                  type: string
+                                  description: Original file name
+                                mime:
+                                  type: string
+                                  description: MIME type of the file
+                                  enum: [image/png, image/jpeg, image/x-icon, image/svg+xml, image/gif, image/webp, text/plain]
+                                data:
+                                  type: string
+                                  description: Base64 encoded binary data of the file
+                            multipart:
+                              type: array
+                              description: Array of multipart file metadata
+                              items:
+                                type: object
+                                required: [id, name, mime]
+                                properties:
+                                  id:
+                                    type: string
+                                    description: Unique identifier for the multipart file
+                                  name:
+                                    type: string
+                                    description: Original file name
+                                  mime:
+                                    type: string
+                                    description: MIME type of the file
+                                    enum: [image/png, image/jpeg, image/x-icon, image/svg+xml, image/gif, image/webp, text/plain]

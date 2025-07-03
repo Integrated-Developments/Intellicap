@@ -111,7 +111,8 @@
         "files.autoSaveWhenNoErrors": true,
         "files.associations": {
             "copyright": "plaintext",
-            "**.code-extensions": "jsonc"
+            "**.code-extensions": "jsonc",
+            "**.gitlinks": "plaintext"
         },
         "files.watcherInclude": [],
         "files.exclude": {
@@ -522,6 +523,7 @@
         },
 
         //2.11: Format & Linting
+        "pylint.args": ["--rcfile=${workspaceFolder}/.pylintrc"],
         "eslint.enable": true,
         "eslint.lintTask.enable": false,
         "eslint.format.enable": true,

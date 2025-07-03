@@ -39,9 +39,13 @@ if errorlevel 1 (
 
 :: Check cli arg for commit message ::
 if "%~1"=="" (
-    set /p "Arg=[92mPlease provide a commit message: [95m" && echo [0m
+    for /f "tokens=1 delims=" %%L in (scripts/Gittr.txt) do (
+        set "Arg=Gittr-%%L: Update"
+        set /a New=%%L + 1
+        echo %New% > "scripts/Gittr.txt"
+    )
 ) else (
-    set "Arg=%1"
+    set "Arg=%~1"
 )
 
 :: PUSH THAT BITCH XD ::

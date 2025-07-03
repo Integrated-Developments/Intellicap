@@ -1,0 +1,19 @@
+[pip]
+flask
+wtforms
+flask_wtf
+pillow
+yfinance
+pandas
+datetime
+flask_sqlalchemy
+psycopg2
+qrcode
+bitcoinlib
+base64
+
+[3rd Party]
+git
+cloudflared
+postgresql
+adb

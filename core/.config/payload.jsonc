@@ -1,144 +1,270 @@
-//<!-- Payload Schematics Format 1 ----->
+// Payload Schematic Format 2
 {
     "Meta": {
         "File": "payload.jsonc",
         "Desc": "Configure Payload Schematic",
-        "Version": "0.1.2",
-        "Date": "6.9.25",
+        "Version": "0.2.15",
+        "Date": "7.3.25",
         "Int": "6.9.25",
         "Dev": "AngrySatan666"
     },
     "Schema": {
-        "gpt": {
+        "Incoming": {
+            "desc": "Incoming from Client to the EndPoint Payload Schema",
             "type": "object",
             "properties": {
                 "key": {
                     "type": "string",
-                    "required": true,
-                    "desc": "Authorization key for API"
-                },
-                "id": {
-                    "type": "string",
-                    "required": true,
-                    "desc": "Unique Identifier for the Payload Event"
-                },
-                "ip": {
-                    "type": "string",
-                    "required": true,
-                    "desc": "IP Address of the Payload Sender, if applicable"
-                },
-                "stamp": {
-                    "type": "string",
-                    "required": true,
-                    "desc": "Timestamp of the Payload's Send"
+                    "desc": "Authorization Key",
+                    "pattern": "^\\d{2}-[A-Z][A-Za-z0-9]{10}$"
                 },
                 "action": {
                     "type": "string",
-                    "required": true,
-                    "desc": "Tells the API Which Action to do with the Payload"
+                    "desc": "Tells the Api Which Action to Perform",
+                    "enum": [
+                        "--btc",
+                        "--ico_conv",
+                        "--yfpuller"
+                    ]
                 },
                 "arguments": {
                     "type": "array",
-                    "required": false,
-                    "desc": "Further Configures the Actions with the Payload",
+                    "desc": "Further Configures the Actions Performed",
                     "items": {
                         "type": "object",
+                        "desc": "The Argument and its Value",
+                        "minProperties": 1,
+                        "maxProperties": 1,
+                        "additionalProperties": false,
                         "patternProperties": {
                             "^--[a-zA-Z0-9_-]+$": {
-                                "type": "array",
-                                "required": true,
-                                "desc": "Arguments for the CLI Command",
-                                "items": {
-                                    "type": "string",
-                                    "desc": "Argument Value"
-                                }
-                            },
-                            "minProperties": 1,
-                            "maxProperties": 1,
-                            "additionalProperties": false
+                                "type": "string",
+                                "desc": "Argument Value"
+                            }
                         }
                     }
                 },
                 "attachments": {
-                    "type": "boolean",
-                    "required": false,
-                    "desc": "Indicates if the Payload has Attached Files or Data"
-                },
-                "attached": {
-                    "type": "array",
-                    "desc": "Array of attached files, each as base64 or multipart",
-                    "items": {
-                        "type": "object",
-                        "properties": {
-                            "base64": {
+                    "type": "object",
+                    "desc": "Attachments for the Payload",
+                    "properties": {
+                        "files": {
+                            "type": "array",
+                            "desc": "Array of Attached Files",
+                            "items": {
                                 "type": "object",
-                                "desc": "Base64-encoded file attachment",
+                                "desc": "Attached Files Metadata",
                                 "properties": {
-                                    "name": { "type": "string", "desc": "File name" },
-                                    "type": { "type": "string", "desc": "MIME type" },
-                                    "size": { "type": "integer", "desc": "File size in bytes" },
-                                    "data": { "type": "string", "desc": "Base64-encoded data" },
-                                    "field": { "type": "string", "desc": "Field name" }
-                                },
-                                "required": ["name", "type", "size", "data", "field"]
-                            },
-                            "multipart": {
-                                "type": "object",
-                                "desc": "Multipart file attachment (file sent separately)",
-                                "properties": {
-                                    "id": { "type": "string", "desc": "Attachment ID" },
-                                    "name": { "type": "string", "desc": "File name" },
-                                    "mime": { "type": "string", "desc": "MIME type" },
-                                    "size": { "type": "integer", "desc": "File size in bytes" },
-                                    "field": { "type": "string", "desc": "Field name" }
-                                },
-                                "required": ["id", "name", "mime", "size", "field"]
+                                    "base64": {
+                                        "type": "object",
+                                        "desc": "Base64 Encoded File Content",
+                                        "properties": {
+                                            "name": {
+                                                "type": "string",
+                                                "desc": "Original File Name"
+                                            },
+                                            "mime": {
+                                                "type": "string",
+                                                "desc": "MIME Type of the File",
+                                                "enum": [
+                                                    "image/png",
+                                                    "image/jpeg",
+                                                    "image/x-icon",
+                                                    "image/svg+xml",
+                                                    "image/gif",
+                                                    "image/webp",
+                                                    "text/plain"
+                                                ]
+                                            },
+                                            "data": {
+                                                "type": "string",
+                                                "desc": "Base64 Encoded Binary Data of the File"
+                                            }
+                                        },
+                                        "required": ["name", "mime", "data"]
+                                    },
+                                    "multipart": {
+                                        "type": "array",
+                                        "desc": "Array of Multipart File Metadata",
+                                        "items": {
+                                            "type": "object",
+                                            "desc": "Multipart File Metadata",
+                                            "properties": {
+                                                "id": {
+                                                    "type": "string",
+                                                    "desc": "Unique Identifier for the Multipart File"
+                                                },
+                                                "name": {
+                                                    "type": "string",
+                                                    "desc": "Original File Name"
+                                                },
+                                                "mime": {
+                                                    "type": "string",
+                                                    "desc": "MIME Type of the File",
+                                                    "enum": [
+                                                        "image/png",
+                                                        "image/jpeg",
+                                                        "image/x-icon",
+                                                        "image/svg+xml",
+                                                        "image/gif",
+                                                        "image/webp",
+                                                        "text/plain"
+                                                    ]
+                                                }
+                                            },
+                                            "required": ["id", "name", "mime"]
+                                        }
+                                    }
+                                }
                             }
+                        }
+                    },
+                    "required": ["files"]
+                },
+                "comment": {
+                    "type": "string",
+                    "desc": "Optional comment or chat message from GPT or user"
+                }
+            },
+            "required": ["key", "action"]
+        },
+        "Receiving": {
+            "desc": "Incoming Payload Enriched by Server Schema",
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "desc": "Unique Identifier for the Payload Event"
+                },
+                "ip": {
+                    "type": "string",
+                    "desc": "IP Address of the Payload Sender"
+                },
+                "timestamp": {
+                    "type": "string",
+                    "desc": "ISO8601 Timestamp of When the Payload was Received"
+                }
+            },
+            "required": ["id", "ip", "timestamp"]
+        },
+        "Outgoing": {
+            "desc": "Response Payload Schema from Server to Client",
+            "type": "object",
+            "properties": {
+                "status": {
+                    "type": "integer",
+                    "desc": "HTTP Status Code",
+                    "enum": [
+                        200,
+                        400,
+                        404,
+                        500,
+                        666
+                    ]
+                },
+                "id": {
+                    "type": "string",
+                    "desc": "Unique Identifier for the Payload Event"
+                },
+                "body": {
+                    "type": "object",
+                    "desc": "Response Body",
+                    "properties": {
+                        "result": {
+                            "type": "string",
+                            "desc": "Result of the Action Performed",
+                            "enum": [
+                                "success",
+                                "error",
+                                "warning"
+                            ]
                         },
-                        "additionalProperties": false
-                    }
+                        "message": {
+                            "type": "string",
+                            "desc": "PIPE STDOUT Message from the Action"
+                        }
+                    },
+                    "required": ["result", "message"]
                 },
-                "comments": {
-                    "type": "array",
-                    "items": { "type": "string" },
-                    "required": false,
-                    "desc": "Any Comments or Notes for the Payload"
+                "attachments": {
+                    "type": "object",
+                    "desc": "Attachments for the Payload",
+                    "properties": {
+                        "files": {
+                            "type": "array",
+                            "desc": "Array of Attached Files",
+                            "items": {
+                                "type": "object",
+                                "desc": "Attached Files Metadata",
+                                "properties": {
+                                    "base64": {
+                                        "type": "object",
+                                        "desc": "Base64 Encoded File Content",
+                                        "properties": {
+                                            "name": {
+                                                "type": "string",
+                                                "desc": "Original File Name"
+                                            },
+                                            "mime": {
+                                                "type": "string",
+                                                "desc": "MIME Type of the File",
+                                                "enum": [
+                                                    "image/png",
+                                                    "image/jpeg",
+                                                    "image/x-icon",
+                                                    "image/svg+xml",
+                                                    "image/gif",
+                                                    "image/webp",
+                                                    "text/plain"
+                                                ]
+                                            },
+                                            "data": {
+                                                "type": "string",
+                                                "desc": "Base64 Encoded Binary Data of the File"
+                                            }
+                                        },
+                                        "required": ["name", "mime", "data"]
+                                    },
+                                    "multipart": {
+                                        "type": "array",
+                                        "desc": "Array of Multipart File Metadata",
+                                        "items": {
+                                            "type": "object",
+                                            "desc": "Multipart File Metadata",
+                                            "properties": {
+                                                "id": {
+                                                    "type": "string",
+                                                    "desc": "Unique Identifier for the Multipart File"
+                                                },
+                                                "name": {
+                                                    "type": "string",
+                                                    "desc": "Original File Name"
+                                                },
+                                                "mime": {
+                                                    "type": "string",
+                                                    "desc": "MIME Type of the File",
+                                                    "enum": [
+                                                        "image/png",
+                                                        "image/jpeg",
+                                                        "image/x-icon",
+                                                        "image/svg+xml",
+                                                        "image/gif",
+                                                        "image/webp",
+                                                        "text/plain"
+                                                    ]
+                                                }
+                                            },
+                                            "required": ["id", "name", "mime"]
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "required": ["files"]
                 }
-            }
+            },
+            "required": ["status", "id", "body"]
         }
-    },
-    "Example": {
-        "key": "0ifgn[08qw0gfcrq0gfm-hki",
-        "id": "gpt-12",
-        "ip": "10.0.0.35",
-        "stamp": "6.9.25:10:05:01.028",
-        "action": "move",
-        "arguments": [
-            {"--target": ["core/.config/Settings.json", "core/files/settings.json"]},
-            {"--dest": ["core/.config/backup/Settings.json"]}
-        ],
-        "attachments": true,
-        "attached": [
-            {
-                "base64": {
-                    "name": "hello.png",
-                    "mime": "image/png",
-                    "size": 1024,
-                    "data": "BASE64-ENCODED-DATA",
-                    "field": "file1"
-                },
-                "multipart": {
-                    "id": "mtp-137",
-                    "name": "hello.txt",
-                    "mime": "text/plain",
-                    "size": 512,
-                    "field": "file2"
-                }
-            }
-        ],
-        "comments": [
-            "Backing up Settings.json",
-            "Copying to ouput directory"
-        ]
     }
 }

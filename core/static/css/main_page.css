@@ -1,0 +1,19 @@
+@media (prefers-color-scheme: dark) {
+    html {
+        background-color: #000000;
+        color: #e0e0e0;
+    }
+}
+
+@media (prefers-color-scheme: light) {
+    html {
+        background-color: #f0f0f0;
+        color: #000000;
+    }
+}
+
+hr {
+    border: solid 3px;
+    border-color: gray;
+    margin: 0px;
+}

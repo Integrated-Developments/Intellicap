@@ -28,5 +28,9 @@
     {
         "key": "ctrl+alt+shift+k",
         "command": "workbench.action.openGlobalKeybindingsFile"
+    },
+    {
+        "key": "shift+return",
+        "command": "-"
     }
 ]
