@@ -71,6 +71,2425 @@ yes please
 _**Assistant**_
 
 
+````
+
+````
+All requested corrections have been made:
+
+1. The `arguments` property now uses a standard array of objects with `arg` and `value` keys, removing the non-standard `patternProperties` usage.
+2. The `base64` property is now correctly typed as an `object` (not `string`) in both Incoming and Outgoing schemas.
+3. The typo "Recieving" is fixed to "Receiving", and the timestamp description is corrected.
+4. The `body.message` property is now a `string` instead of an `object`.
+
+Your schema is now more robust, standard, and typo-free. Let me know if you need further validation or help!
+
+---
+
+_**User**_
+
+can you just give me a few example incoming payloads so I can see how these chanegs affected it
+
+---
+
+_**Assistant**_
+
+Here are a few example Incoming payloads based on your updated schema:
+
+---
+
+### 1. Minimal Valid Payload
+
+```json
+{
+  "key": "12-Aabcdef1234",
+  "action": "--btc"
+}
+```
+
+---
+
+### 2. Payload with Arguments
+
+```json
+{
+  "key": "34-Bbcdefgh567",
+  "action": "--ico_conv",
+  "arguments": [
+    {
+      "arg": "--from",
+      "value": "ETH"
+    },
+    {
+      "arg": "--to",
+      "value": "BTC"
+    },
+    {
+      "arg": "--amount",
+      "value": "1.5"
+    }
+  ]
+}
+```
+
+---
+
+### 3. Payload with Attachments (Base64)
+
+```json
+{
+  "key": "56-Ccdefghij89",
+  "action": "--yfpuller",
+  "attachments": {
+    "files": [
+      {
+        "base64": {
+          "name": "example.txt",
+          "mime": "text/plain",
+          "data": "SGVsbG8gd29ybGQh"  // "Hello world!" in base64
+        }
+      }
+    ]
+  }
+}
+```
+
+---
+
+### 4. Payload with Arguments and Multipart Attachments
+
+```json
+{
+  "key": "78-Ddefghijk01",
+  "action": "--btc",
+  "arguments": [
+    {
+      "arg": "--network",
+      "value": "testnet"
+    }
+  ],
+  "attachments": {
+    "files": [
+      {
+        "multipart": [
+          {
+            "id": "part1",
+            "name": "image1.png",
+            "mime": "image/png"
+          },
+          {
+            "id": "part2",
+            "name": "image2.png",
+            "mime": "image/png"
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+---
+
+Let me know if you want more complex examples or edge cases!
+
+---
+
+_**User**_
+
+Show me some example outgoing real quick, I think the schema will work tho
+
+---
+
+_**Assistant**_
+
+Here are some example Outgoing payloads based on your schema:
+
+---
+
+### 1. Success Response (No Attachments)
+
+```json
+{
+  "status": 200,
+  "id": "evt-1234567890  "body": {
+    "result": "success",
+    "message": "Conversion completed successfully."
+  }
+}
+```
+
+---
+
+### 2. Error Response
+
+```json
+{
+  "status": 400,
+  "id": "evt-0987654321",
+  "body": {
+    "result": "error",
+    "message": "Invalid arguments provided."
+  }
+}
+```
+
+---
+
+### 3. Success With Attachments (Base64)
+
+```json
+{
+  "status": 200,
+  "id": "evt-abcdef1234",
+  "body": {
+    "result": "success",
+    "message": "File generated."
+  },
+  "attachments": {
+    "files": [
+      {
+        "base64": {
+          "name": "output.txt",
+          "mime": "text/plain",
+          "data": "U29tZSBvdXRwdXQgZGF0YQ=="
+        }
+      }
+    ]
+  }
+}
+```
+
+---
+
+### 4. Success With Attachments (Multipart)
+
+```json
+{
+  "status": 200,
+  "id": "evt-xyz987654",
+  "body": {
+    "result": "success",
+    "message": "Multiple files attached."
+  },
+  "attachments": {
+    "files": [
+      {
+        "multipart": [
+          {
+            "id": "part1",
+            "name": "img1.png",
+            "mime": "image/png"
+          },
+          {
+            "id": "part2",
+            "name": "img2.png",
+            "mime": "image/png"
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+Let me know if you want more edge cases or details!
+
+---
+
+_**User**_
+
+Now some me some example incoming payloads, after Recieving has made its additions, so I can see what the actual action.py file will recive as paylopad
+
+---
+
+_**Assistant**_
+
+Here are example payloads as they would appear after the server has enriched them with the Receiving schema fields (`id`, `ip`, `timestamp`). This is what your `action.py` would receive:
+
+---
+
+### 1. Minimal Valid Payload (Enriched)
+
+```json
+{
+  "key": "12-Aabcdef1234",
+  "action": "--btc",
+  "id": "evt-1234567890",
+  "ip": "192.168.1.100",
+  "timestamp": "2025-07-03T12:34:56Z"
+}
+```
+
+---
+
+### 2. With Arguments (Enriched)
+
+```json
+{
+  "key": "34-Bbcdefgh567",
+  "action": "--ico_conv",
+  "arguments": [
+    {
+      "arg": "--from",
+      "value": "ETH"
+    },
+    {
+      "arg": "--to",
+      "value": "BTC"
+    },
+    {
+      "arg": "--amount",
+      "value": "1.5"
+    }
+  ],
+  "id": "evt-2233445566",
+  "ip": "203.0.113.42",
+  "timestamp": "2025-07-03T13:00:00Z"
+}
+```
+
+---
+
+### 3. With Attachments (Base64, Enriched)
+
+```json
+{
+  "key": "56-Ccdefghij89",
+  "action": "--yfpuller",
+  "attachments": {
+    "files": [
+      {
+        "base64": {
+          "name": "example.txt",
+          "mime": "text/plain",
+          "data": "SGVsbG8gd29ybGQh"
+        }
+      }
+    ]
+  },
+  "id": "evt-9988776655",
+  "ip": "10.0.0.5",
+  "timestamp": "2025-07-03T14:15:00Z"
+}
+```
+
+---
+
+### 4. With Arguments and Multipart Attachments (Enriched)
+
+```json
+{
+  "key": "78-Ddefghijk01",
+  "action": "--btc",
+  "arguments": [
+    {
+      "arg": "--network",
+      "value": "testnet"
+    }
+  ],
+  "attachments": {
+    "files": [
+      {
+        "multipart": [
+          {
+            "id": "part1",
+            "name": "image1.png",
+            "mime": "image/png"
+          },
+          {
+            "id": "part2",
+            "name": "image2.png",
+            "mime": "image/png"
+          }
+        ]
+      }
+    ]
+  },
+  "id": "evt-1122334455",
+  "ip": "172.16.0.2",
+  "timestamp": "2025-07-03T15:30:00Z"
+}
+```
+
+---
+
+Let me know if you want to see more complex or edge-case examples!
+
+---
+
+_**User**_
+
+I think thats perfect. with this, i should be able to trigger action fles and send text files, images, gifs, and im assuming even smaller videos as base64? (provided we give the schema the proper enum)
+
+---
+
+_**Assistant**_
+
+Yes, that's correct! With your current schema, you can trigger action files and send text files, images, and GIFs as base64. If you want to support additional file types (like videos or other binary formats), just add the appropriate MIME types (e.g., "video/mp4", "video/webm", etc.) to the `enum` list under the `mime` property.
+
+As long as the file is encoded as base64 and the MIME type is allowed in the schema, your system will handle it. For very large files, consider multipart or chunked uploads, but for small to moderate files, base64 in the payload works well.
+
+Let me know if you want help adding more MIME types or handling larger files!
+
+---
+
+_**User**_
+
+Now, I also recall that the required tag that I used throughout is not proper json schema and that is should be at the object level. Can you make those changes while ensuring everythong the is required stays required, and wahtever is optional, stays optional
+
+---
+
+_**Assistant**_
+
+
+````
+
+````
+All "required" tags have been moved to the correct object level as per JSON Schema standards. Every required field is now listed in its parent object's "required" array, and optional fields remain optional. The schema is now fully standards-compliant and will work with any JSON Schema validator.
+
+Let me know if you need further adjustments or want to add more MIME types!
+
+---
+
+_**User**_
+
+now one more time just for verification, give me an example json payload incoming, and outgoing
+
+---
+
+_**Assistant**_
+
+Here are example payloads based on your final schema:
+
+---
+
+### Example Incoming Payload
+
+```json
+{
+  "key": "12-Aabcdef1234",
+  "action": "--btc",
+  "arguments": [
+    {
+      "arg": "--amount",
+      "value": "0.5"
+    }
+  ],
+  "attachments": {
+    "files": [
+      {
+        "base64": {
+          "name": "note.txt",
+          "mime": "text/plain",
+          "data": "SGVsbG8gd29ybGQh"
+        }
+      }
+    ]
+  }
+}
+```
+
+---
+
+### Example Outgoing Payload
+
+```json
+{
+  "status": 200,
+  "id": "evt-1234567890",
+  "body": {
+    "result": "success",
+    "message": "BTC transaction completed."
+  },
+  "attachments": {
+    "files": [
+      {
+        "base64": {
+          "name": "receipt.txt",
+          "mime": "text/plain",
+          "data": "UmVjZWlwdCBkYXRhIGhlcmUu"
+        }
+      }
+    ]
+  }
+```
+
+Let me know if you need more examples or edge cases!
+
+---
+
+_**User**_
+
+Perfect, this should pretty well cover any action.py that I'll be using.
+
+---
+
+_**Assistant**_
+
+Great! Your schema is now robust, standards-compliant, and flexible enough to support a wide range of payloads for any `action.py` you implement. If you need to extend it for new file types or features in the future, just update the MIME type enums or add new properties as needed.
+
+If you have any more questions or need help with implementation, just ask!
+
+---
+
+_**User**_
+
+Now actually I would like to eventually tie in a chat-gpt module that I made with my openapi premium account. However, these GPT's require a spcific action yaml that describes the exact structure of the api call, and its results. This woould enable the gpt to be tought the endlinks, and be able to control real actions on my device with the api endpoint and json payload, can you generate me the action schema from this payload schema?
+
+---
+
+_**Assistant**_
+
+Certainly! Below is an OpenAPI-style action YAML schema that describes your API endpoint, request, and response structure, based on your current payload schema. This will allow a GPT agent to understand how to call your endpoint and what to expect in return.
+
+---
+
+```yaml
+openapi: 3.0.3
+info:
+  title: Intellicap Action API
+  version: "1.0.0"
+  description: API for triggering device actions and file transfers.
+
+paths:
+  /action:
+    post:
+      summary: Trigger an action or file transfer on the device.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [key, action]
+              properties:
+                key:
+                  type: string
+                  description: Authorization Key
+                  pattern: "^\\d{2}-[A-Z][A-Za-z0-9]{10}$"
+                action:
+                  type: string
+                  description: Tells the API which action to perform
+                  enum: [--btc, --ico_conv, --yfpuller]
+                arguments:
+                  type: array
+                  description: Further configures the actions performed
+                  items:
+                    type: object
+                    required: [arg, value]
+                    properties:
+                      arg:
+                        type: string
+                        description: Argument name (must start with --)
+                        pattern: "^--[a-zA-Z0-9_-]+$"
+                      value:
+                        type: string
+                        description: Argument value
+                attachments:
+                  type: object
+                  description: Attachments for the payload
+                  required: [files]
+                  properties:
+                    files:
+                      type: array
+                      description: Array of attached files
+                      items:
+                        type: object
+                        description: Attached file metadata
+                        properties:
+                          base64:
+                            type: object
+                            required: [name, mime, data]
+                            properties:
+                              name:
+                                type: string
+                                description: Original file name
+                              mime:
+                                type: string
+                                description: MIME type of the file
+                                enum: [image/png, image/jpeg, image/x-icon, image/svg+xml, image/gif, image/webp, text/plain]
+                              data:
+                                type: string
+                                description: Base64 encoded binary data of the file
+                          multipart:
+                            type: array
+                            description: Array of multipart file metadata
+                            items:
+                              type: object
+                              required: [id, name, mime]
+                              properties:
+                                id:
+                                  type: string
+                                  description: Unique identifier for the multipart file
+                                name:
+                                  type: string
+                                  description: Original file name
+                                mime:
+                                  type: string
+                                  description: MIME type of the file
+                                  enum: [image/png, image/jpeg, image/x-icon, image/svg+xml, image/gif, image/webp, text/plain]
+
+      responses:
+        '200':
+          description: Action result and optional file attachments
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [status, id, body]
+                properties:
+                  status:
+                    type: integer
+                    description: HTTP status code
+                    enum: [200, 400, 404, 500, 666]
+                  id:
+                    type: string
+                    description: Unique identifier for the payload event
+                  body:
+                    type: object
+                    required: [result, message]
+                    properties:
+                      result:
+                        type: string
+                        description: Result of the action performed
+                        enum: [success, error, warning]
+                      message:
+                        type: string
+                        description: PIPE STDOUT message from the action
+                  attachments:
+                    type: object
+                    required: [files]
+                    properties:
+                      files:
+                        type: array
+                        description: Array of attached files
+                        items:
+                          type: object
+                          description: Attached file metadata
+                          properties:
+                            base64:
+                              type: object
+                              required: [name, mime, data]
+                              properties:
+                                name:
+                                  type: string
+                                  description: Original file name
+                                mime:
+                                  type: string
+                                  description: MIME type of the file
+                                  enum: [image/png, image/jpeg, image/x-icon, image/svg+xml, image/gif, image/webp, text/plain]
+                                data:
+                                  type: string
+                                  description: Base64 encoded binary data of the file
+                            multipart:
+                              type: array
+                              description: Array of multipart file metadata
+                              items:
+                                type: object
+                                required: [id, name, mime]
+                                properties:
+                                  id:
+                                    type: string
+                                    description: Unique identifier for the multipart file
+                                  name:
+                                    type: string
+                                    description: Original file name
+                                  mime:
+                                    type: string
+                                    description: MIME type of the file
+                                    enum: [image/png, image/jpeg, image/x-icon, image/svg+xml, image/gif, image/webp, text/plain]
+```
+
+---
+
+This YAML can be used as an OpenAPI action schema for your GPT module. Adjust the endpoint path or add authentication details as needed for your deployment. Let me know if you want this in a file or need further customization!
+
+---
+
+_**User**_
+
+should it be a .yaml or a .yml
+
+---
+
+_**Assistant**_
+
+Both `.yaml` and `.yml` are valid and widely accepted extensions for YAML files. There is no functional difference—it's purely a matter of preference or project convention. `.yaml` is more common in modern projects and is recommended by the official YAML website.
+
+You can safely use `gpt.actions.yaml`.
+
+---
+
+_**User**_
+
+okay then can you apply the open api action schema to this gpt.actions.yaml file
+
+---
+
+_**Assistant**_
+
+
+````
+
+````
+The OpenAPI action schema has been added to your `gpt.actions.yaml` file, matching your payload schema for GPT integration. Your GPT module can now use this file to understand and interact with your API endpoint. Let me know if you need further adjustments or want to add more endpoints!
+
+---
+
+_**User**_
+
+Since chat gpt, well... chats, lets add a comment key to the payload schema incoming so that way if need be, we can also log what the gpt responds with text wise
+
+---
+
+_**Assistant**_
+
+
+````
+
+````
+An optional "comment" key has been added to the Incoming payload schema. You can now log any chat message or GPT response text along with the payload. Let me know if you want this reflected in the OpenAPI action schema as well!
+
+---
+
+_**User**_
+
+yes, please reflect this in the openapi yaml
+
+---
+
+_**Assistant**_
+
+
+````
+
+````
+The optional "comment" property has been added to the request schema in your OpenAPI YAML. Your GPT integration can now include and document chat messages or comments in the payload. Let me know if you need any further updates!
+
+---
+
+_**User**_
+
+give me a few example outgoing payloads so that i can be sure to make btc.py output correctly
+
+---
+
+_**Assistant**_
+
+Here are a few example Outgoing payloads based on your current schema. These will help you ensure that `btc.py` outputs the correct structure:
+
+---
+
+### 1. Success Response (No Attachments)
+
+```json
+{
+  "status": 200,
+  "id": "evt-1234567890",
+  "body": {
+    "result": "success",
+    "message": "BTC transaction completed successfully."
+  }
+}
+```
+
+---
+
+### 2. Error Response
+
+```json
+{
+  "status": 400,
+  "id": "evt-0987654321",
+  "body": {
+    "result": "error",
+    "message": "Invalid wallet address provided."
+  }
+}
+```
+
+---
+
+### 3. Success With File Attachment (Base64)
+
+```json
+{
+  "status": 200,
+  "id": "evt-abcdef1234",
+  "body": {
+    "result": "success",
+    "message": "Transaction receipt attached."
+  },
+  "attachments": {
+    "files": [
+      {
+        "base64": {
+          "name": "receipt.txt",
+          "mime": "text/plain",
+          "data": "UmVjZWlwdCBkYXRhIGhlcmUu"
+        }
+      }
+    ]
+  }
+}
+```
+
+---
+
+### 4. Success With Multiple Attachments (Multipart)
+
+```json
+{
+  "status": 200,
+  "id": "evt-xyz987654",
+  "body": {
+    "result": "success",
+    "message": "Transaction completed. Images attached."
+  },
+  "attachments": {
+    "files": [
+      {
+        "multipart": [
+          {
+            "id": "img1",
+            "name": "confirmation1.png",
+            "mime": "image/png"
+          },
+          {
+            "id": "img2",
+            "name": "confirmation2.png",
+            "mime": "image/png"
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+Let me know if you need more edge cases or want to see a specific scenario!
+
+---
+
+_**User**_
+
+show me example incoming again so I can get this btc.py to correctly read the payload
+
+---
+
+_**Assistant**_
+
+Here are some example Incoming payloads your `btc.py` should expect and parse:
+
+---
+
+### 1. Minimal Valid Payload
+
+```json
+{
+  "key": "12-Aabcdef1234",
+  "action": "--btc"
+}
+```
+
+---
+
+### 2. With Arguments
+
+```json
+{
+  "key": "34-Bbcdefgh567",
+  "action": "--btc",
+  "arguments": [
+    {
+      "arg": "--amount",
+      "value": "0.5"
+    },
+    {
+      "arg": "--to",
+      "value": "1BitcoinAddress..."
+    }
+  ]
+}
+```
+
+---
+
+### 3. With Attachments
+
+```json
+{
+  "key": "56-Ccdefghij89",
+  "action": "--btc",
+  "attachments": {
+    "files": [
+      {
+        "base64": {
+          "name": "note.txt",
+          "mime": "text/plain",
+          "data": "SGVsbG8gd29ybGQh"
+        }
+      }
+    ]
+  }
+}
+```
+
+---
+
+### 4. With Comment
+
+```json
+{
+  "key": "78-Ddefghijk01",
+  "action": "--btc",
+  "comment": "Please generate a new wallet and return the address."
+}
+```
+
+---
+
+### 5. With Arguments, Attachments, and Comment
+
+```json
+{
+  "key": "90-Eefghijkl23",
+  "action": "--btc",
+  "arguments": [
+    {
+      "arg": "--amount",
+      "value": "1.0"
+    }
+  ],
+  "attachments": {
+    "files": [
+      {
+        "base64": {
+          "name": "extra.txt",
+          "mime": "text/plain",
+          "data": "U29tZSBleHRyYSBkYXRh"
+        }
+      }
+    ]
+  },
+  "comment": "Send 1 BTC to the address in the file."
+}
+```
+
+---
+
+These examples cover all the fields your script should handle: `key`, `action`, `arguments` (as an array of objects), `attachments`, and `comment`.
+
+---
+
+_**User**_
+
+this payload structure isnt going to work actually. we wpuld be endlessly for looping the arguments section to figure it all out, to make it easier, instead of 
+{
+    "arg": "",
+    "value": ""
+},
+
+just do {"arg": "value"}
+
+---
+
+_**Assistant**_
+
+
+````
+
+````
+The "arguments" array in your payload schema now accepts objects with a single key-value pair, like {"--arg": "value"}, making it much easier to parse in your scripts. You can now directly access argument names and values without looping for "arg"/"value" keys.
+
+Let me know if you want the OpenAPI YAML updated to match this change!
+
+---
+
+_**User**_
+
+please also update the yaml of those changes if needed
+
+---
+
+_**Assistant**_
+
+
+````
+
+````
+The OpenAPI YAML has been updated: the "arguments" property now matches your new schema, where each argument is an object with a single key-value pair (e.g., {"--amount": "0.5"}). This ensures your documentation and GPT integration are in sync with your payload structure. Let me know if you need further adjustments!
+
+---
+
+_**User**_
+
+now once again show me an incoming and outgoing payload
+
+---
+
+_**Assistant**_
+
+Here are updated examples based on your new arguments structure:
+
+---
+
+### Example Incoming Payload
+
+```json
+{
+  "key": "12-Aabcdef1234",
+  "action": "--btc",
+  "arguments": [
+    { "--amount": "0.5" },
+    { "--to": "1BitcoinAddress..." }
+  ],
+  "attachments": {
+    "files": [
+      {
+        "base64": {
+          "name": "note.txt",
+          "mime": "text/plain",
+          "data": "SGVsbG8gd29ybGQh"
+        }
+      }
+    ]
+  },
+  "comment": "Send 0.5 BTC to the address above."
+}
+```
+
+---
+
+### Example Outgoing Payload
+
+```json
+{
+  "status": 200,
+  "id": "evt-1234567890  "body": {
+    "result": "success",
+    "message": "BTC transaction completed successfully."
+  },
+  "attachments": {
+    "files": [
+      {
+        "base64": {
+          "name": "receipt.txt",
+          "mime": "text/plain",
+          "data": "UmVjZWlwdCBkYXRhIGhlcmUu"
+        }
+      }
+    ]
+  }
+}
+```
+
+Let me know if you need more examples or edge cases!
+
+---
+
+_**User**_
+
+now does btc.py correctly check for the --cmd flag which would be sent by the flask. and if found. tries to collect any attachments, commecnts, then tries to colellect all the arguments.
+once collected. it should first see if the --create_wallet key is in the args list?
+
+---
+
+_**Assistant**_
+
+Your current `btc.py` does not correctly check for the `--cmd` flag (it uses `type=bool`, which does not work as expected with argparse), and the arguments parsing logic is not correct for your new payload structure.
+
+Here’s what you need to fix:
+- Use `action='store_true'` for boolean flags in argparse.
+- When reading `arguments`, you need to flatten the list of single-key dicts into a single dict or check each dict for the key you want.
+
+Here’s how you can update your script to do this correctly:
+
+```python
+def main():
+    parser = argparse.ArgumentParser(description='Generate Bitcoin Wallet as Binary, Create Transactions')
+    parser.add_argument('--cmd', action='store_true', help='Run in command mode (expects JSON on stdin)')
+    args = parser.parse_args()
+
+    if args.cmd:
+        try:
+            data = json.load(sys.stdin)
+            attachments = data.get('attachments', {})
+            comment = data.get('comment', '')
+            arguments = data.get('arguments', [])
+
+            # Flatten arguments into a single dict for easy lookup
+            arg_dict = {}
+            for arg_obj in arguments:
+                if isinstance(arg_obj, dict):
+                    arg_dict.update(arg_obj)
+
+            if '--create_wallet' in arg_dict:
+                # Do wallet creation logic here
+                public, private = create()
+                response = {
+                    "status": 200,
+                    "body": {
+                        "result": "success",
+                        "message": f"Wallet created. Public: {public}"
+                    }
+                }
+                print(json.dumps(response))
+                return
+
+            # ... handle other arguments/actions here ...
+
+        except json.JSONDecodeError as e:
+            response = {"status": 404, "body": {"result": "error", "message": "Json Decode Error: " + str(e)}}
+            print(json.dumps(response))
+        except Exception as e:
+            response = {"status": 500, "body": {"result": "error", "message": str(e)}}
+            print(json.dumps(response))
+
+if __name__ == '__main__':
+    main()
+```
+
+**Summary:**
+- Use `action='store_true'` for `--cmd`.
+- Collect `attachments`, `comment`, and flatten `arguments` for easy key lookup.
+- Check for `'--create_wallet'` in the flattened arguments.
+
+Let me know if you want this applied directly to your file!
+
+---
+
+_**User**_
+
+So now when we call public, private = create()
+public will get filled with the binary for the qr_code as .png, same for public?
+
+---
+
+_**Assistant**_
+
+Yes, with your current implementation:
+
+```python
+def create (seed=None) :
+    try :
+        if seed :
+            wallet = Wallet.create(keys=seed, network='bitcoin', witness_type='segwit')
+        else:
+            wallet = Wallet.create(key=1, network='bitcoin', witness_type='segwit')
+        key = wallet.get_key()
+        public = gen_qr(data=key.address)
+        private = gen_qr(data=key.wif)
+        return public, private
+    except Exception as e :
+        return str(e)
+```
+
+- `public` will contain the PNG binary data for the QR code of the wallet's public address.
+- `private` will contain the PNG binary data for the QR code of the wallet's WIF private key.
+
+Both are returned as raw PNG bytes (not file paths or base64). If you want to send these in a JSON response, you should base64-encode them before including them in the payload. Let me know if you want help with that!
+
+---
+
+_**User**_
+
+yes, in the create function, before we return public , private base64 encode it
+
+---
+
+_**Assistant**_
+
+
+````
+
+````
+The `create` function now base64-encodes the QR PNG bytes for both the public and private keys before returning them. You can safely include these strings in your JSON responses. Let me know if you need help formatting the outgoing payload!
+
+---
+
+_**User**_
+
+does this correctly import and connectto my postgresql database and use models.py to create the tables?
+
+---
+
+_**Assistant**_
+
+Your `create_app()` function correctly configures the Flask app to connect to your PostgreSQL database using SQLAlchemy. The line:
+
+```python
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql+psycopg2://postgres:tfukgobx@localhost:6666/intellicap'
+```
+
+sets up the connection string, and
+
+```python
+db.init_app(app)
+```
+
+initializes the SQLAlchemy extension with your app.
+
+However, this code alone does not automatically create tables from your `models.py`. To create tables, you need to call:
+
+```python
+with app.app_context():
+    db.create_all()
+```
+
+or use Flask-Migrate for migrations. Also, you must ensure that your models are imported somewhere before calling `create_all()`, so SQLAlchemy knows about them.
+
+**Summary:**  
+- Yes, it connects to your PostgreSQL database.
+- No, it does not automatically create tables from `models.py` unless you explicitly call `db.create_all()` within an app context and ensure your models are imported.
+
+Let me know if you want the code to automatically create tables on startup!
+
+---
+
+_**User**_
+
+Now when I try to run my flask, I get a no database named intellicap, how can I figure out what my database was named
+
+---
+
+_**Assistant**_
+
+The error "no database named intellicap" means PostgreSQL cannot find a database with that name. To figure out what databases exist on your PostgreSQL server, you can:
+
+1. **Use the psql CLI (if installed):**
+   ```sh
+   psql -U postgres -h localhost -p 6666 -l
+   ```
+   This will list all databases on your server.
+
+2. **Use a GUI tool:**  
+   Tools like pgAdmin or DBeaver can connect to your server and show all databases.
+
+3. **Python script (if you have psycopg2 installed):**
+   ```python
+   import psycopg2
+   conn = psycopg2.connect(dbname='postgres', user='postgres', password='tfukgobx', host='localhost', port=6666)
+   cur = conn.cursor()
+   cur.execute('SELECT datname FROM pg_database;')
+   print(cur.fetchall())
+   cur.close()
+   conn.close()
+   ```
+
+4. **Check your PostgreSQL config or setup scripts** for the actual database name.
+
+Once you know the correct database name, update your `SQLALCHEMY_DATABASE_URI` in `app.py` accordingly.
+
+Let me know if you want a script to list the databases for you!
+
+---
+
+_**User**_
+
+where would the config and setup scripts be located
+
+---
+
+_**Assistant**_
+
+In a typical project like yours, PostgreSQL config and setup scripts (such as those that create databases, users, or tables) might be found in several places:
+
+1. **`` or ``**  
+   This is a common location for migration scripts or SQL setup files.
+
+2. **``**  
+   Sometimes, database setup or utility scripts are placed here.
+
+3. **Project root or a `config/` directory**  
+   Look for `.sql` files, `.env` files, or any shell scripts that mention database creation.
+
+4. **`README.md` or documentation**  
+   Sometimes, setup instructions (including database name) are documented here.
+
+5. **Within your Flask app code**  
+   Check for any code that uses `db.create_all()` or runs raw SQL to create databases.
+
+6. **Your PostgreSQL server itself**  
+   If you used a GUI (like pgAdmin) or CLI to create the database, it may not be in your project files.
+
+If you don’t see any obvious setup scripts, you likely created the database manually or with a tool outside the repo. In that case, use the methods from the previous answer to list your databases.
+
+Let me know if you want to search for `.sql` or setup scripts in your workspace!
+
+---
+
+_**User**_
+
+so, if you couldnt tell, I'm very new to postgresql, can you help me figure out what the names of a databases are
+
+---
+
+_**Assistant**_
+
+Absolutely! Here are a few easy ways to list all databases in your PostgreSQL server:
+
+---
+
+### **1. Using the Command Line (`psql`)**
+
+If you have PostgreSQL installed, open Command Prompt or PowerShell and run:
+
+```sh
+psql -U postgres -h localhost -p 6666
+```
+
+- When prompted for a password, enter your superuser password (default is `postgres`).
+- Once in the `psql` prompt, type:
+  ```
+  \l
+  ```
+  or
+  ```
+  \list
+  ```
+  This will show all databases.
+
+---
+
+### **2. Using pgAdmin**
+
+- Open **pgAdmin 4** (you have it installed).
+- Connect to your server (localhost:6666).
+- In the left sidebar, expand **Servers > [Your Server] > Databases**.
+- All database names will be listed there.
+
+---
+
+### **3. Using Python**
+
+If you have `psycopg2` installed, run this script:
+
+```python
+import psycopg2
+
+conn = psycopg2.connect(
+    dbname='postgres',
+ user='postgres',
+    password='tfukgobx',
+    host='localhost',
+    port=6666
+)
+cur = conn.cursor()
+cur.execute('SELECT datname FROM pg_database;')
+for row in cur.fetchall():
+    print(row[0])
+cur.close()
+conn.close()
+```
+
+---
+
+### **4. Using SQL Query in Any SQL Tool**
+
+Connect to your server and run:
+
+```sql
+SELECT datname FROM pg_database;
+```
+
+---
+
+**Tip:**  
+The default databases are usually `postgres`, `template0`, and `template1`. Any other names are user-created databases.
+
+Let me know if you need step-by-step help with any of these methods!
+
+---
+
+_**User**_
+
+perfect, this let me confirm that the database is configured correctrly for how we try to connect to it. 
+Now. to help me with managing it, I have postgresql extension for vscode installed. Help me connect it to my db
+
+---
+
+_**Assistant**_
+
+Great! Here’s how to connect the VS Code PostgreSQL extension to your database:
+
+---
+
+### 1. **Open the PostgreSQL Extension Panel**
+- In VS Code, look for the **PostgreSQL** icon in the Activity Bar on the left (it looks like an elephant).
+- Click it to open the PostgreSQL explorer.
+
+---
+
+### 2. **Add a New Connection**
+- Click the **"+"** (Add New Connection) button.
+- You’ll be prompted for connection details:
+
+  - **Server:** `localhost`
+  - **Port:** `6666`
+  - **Database:** `intellicap` (or whatever your database name is)
+  - **User:** `postgres` (or your username)
+  - **Password:** `tfukgobx` (or your password)
+  - **Save Password:** (choose as you prefer)
+
+---
+
+### 3. **Test and Save**
+- Click **Connect**.
+- If successful, your database will appear in the explorer panel.
+- You can now browse tables, run queries, and manage your database directly from VS Code.
+
+---
+
+**Tip:**  
+If you don’t see the PostgreSQL icon, make sure the extension is installed and enabled.
+
+Let me know if you hit any issues or want to run a test query!
+
+---
+
+_**User**_
+
+for connection name, im guessing it can be any random string>
+
+---
+
+_**Assistant**_
+
+Yes, that's correct!  
+The **connection name** in the VS Code PostgreSQL extension can be any string you like. It's just a label for your reference (e.g., `Intellicap Local`, `Dev DB`, `My Postgres`, etc.). It does **not** affect the actual connection to your database.
+
+---
+
+_**User**_
+
+awesome got it connected, now, just for my future self, how do I say, change my username in postgressql using the command prompt
+
+---
+
+_**Assistant**_
+
+To change your PostgreSQL username (role name) using the command prompt, follow these steps:
+
+---
+
+### 1. **Open the Command Prompt and Connect to PostgreSQL**
+
+```sh
+psql -U postgres -h localhost -p 6666
+```
+(Enter your password when prompted.)
+
+---
+
+### 2. **Rename the User**
+
+At the `psql` prompt, run:
+
+```sql
+ALTER USER old_username RENAME TO new_username;
+```
+**Example:**  
+If your current username is `postgres` and you want to change it to `mynewuser`:
+
+```sql
+ALTER USER postgres RENAME TO mynewuser;
+```
+
+---
+
+### 3. **(Optional) Change the User's Password**
+
+```sql
+ALTER USER mynewuser WITH PASSWORD 'newpassword';
+```
+
+---
+
+**Note:**  
+- Make sure no active connections are using the old username when you rename it.
+- Update your connection strings and app configs to use the new username.
+
+Let me know if you need help with anything else!
+
+---
+
+_**User**_
+
+How about creating a new user
+
+---
+
+_**Assistant**_
+
+To create a new user (role) in PostgreSQL using the command prompt, follow these steps:
+
+---
+
+### 1. Open Command Prompt and Connect to PostgreSQL
+
+```sh
+psql -U postgres -h localhost -p 6666
+```
+(Enter your superuser password when prompted.)
+
+---
+
+### 2. Create a New User
+
+At the `psql` prompt, run:
+
+```sql
+CREATE USER new_username WITH PASSWORD 'new_password';
+```
+
+**Example:**
+```sql
+CREATE USER myuser WITH PASSWORD 'mypassword';
+```
+
+---
+
+### 3. (Optional) Grant Privileges
+
+To allow the new user to create databases:
+```sql
+ALTER USER myuser CREATEDB;
+```
+
+To make the user a superuser (full privileges):
+```sql
+ALTER USER myuser WITH SUPERUSER;
+```
+
+---
+
+**Remember:**  
+- Update your app configs to use the new username and password if needed.
+- You can also grant specific privileges on databases or tables as required.
+
+Let me know if you want to grant specific permissions or roles!
+
+---
+
+_**User**_
+
+Lastly, creating a new database
+
+---
+
+_**Assistant**_
+
+To create a new database in PostgreSQL using the command prompt, follow these steps:
+
+---
+
+### 1. Open Command Prompt and Connect to PostgreSQL
+
+```sh
+psql -U postgres -h localhost -p 6666
+```
+(Enter your password when prompted.)
+
+---
+
+### 2. Create a New Database
+
+At the `psql` prompt, run:
+
+```sql
+CREATE DATABASE new_db_name;
+```
+
+**Example:**
+```sql
+CREATE DATABASE mynewdb;
+```
+
+---
+
+### 3. (Optional) Set the Owner
+
+To create a database owned by a specific user:
+
+```sql
+CREATE DATABASE mynewdb OWNER myuser;
+```
+
+---
+
+**Tip:**  
+- After creating, you can connect to it with:  
+  ```
+  \c mynewdb
+  ```
+- Update your app configs to use the new database name if needed.
+
+Let me know if you want to grant privileges or set up users for the new database!
+
+---
+
+_**User**_
+
+does this correclty make a dynamic link?
+
+---
+
+_**Assistant**_
+
+No, the route definition:
+
+```python
+@api.route('/?user=<user>&key=<key>/code', methods=['GET'])
+def api_code(user, key):
+    return f"API Code - User: {user}, Key: {key}"
+```
+
+is **not correct** for dynamic links in Flask.
+
+**Why?**  
+- Flask route parameters must be part of the path, not the query string.
+- Query parameters (the part after `?`) are accessed via `request.args`, not as function arguments.
+
+---
+
+### **Correct Way**
+
+**If you want dynamic path parameters:**
+
+```python
+@api.route('/<user>/<key>/code', methods=['GET'])
+def api_code(user, key):
+    return f"API Code - User: {user}, Key: {key}"
+```
+
+**If you want to use query parameters:**
+
+```python
+from flask import request
+
+@api.route('/code', methods=['GET'])
+def api_code():
+    user = request.args.get('user')
+    key = request.args.get('key')
+    return f"API Code - User: {user}, Key: {key}"
+```
+
+---
+
+**Summary:**  
+- Use `<param>` in the route for path variables.
+- Use `request.args.get()` for query parameters.  
+- Do **not** put `?user=<user>` in the route string.
+
+Let me know which style you want, and I can show you the exact code!
+
+---
+
+_**User**_
+
+okay so like this, then how do we take the text in <user> and <key> and collect it in memory
+
+---
+
+_**Assistant**_
+
+Yes, your current code is correct for collecting `<user>` and `<key>` from the URL path:
+
+```python
+@api.route('/<user>/<key>/code', methods=['GET'])
+def api_code(user, key):
+    # user and key are now variables you can use in this function
+    print(user)  # or do anything you want with them
+    print(key)
+    return f"API Code - User: {user}, Key: {key}"
+```
+
+**How it works:**  
+- When a request is made to `/someuser/somekey/code`, Flask automatically passes `someuser` to the `user` parameter and `somekey` to the `key` parameter in your function.
+- You can use these variables (`user`, `key`) in your function however you like—they are already "collected in memory" as local variables.
+
+**Example request:**  
+`GET /alice/12345/code`  
+→ `user = "alice"`, `key = "12345"`
+
+Let me know if you want to store them elsewhere or use them in a specific way!
+
+---
+
+_**User**_
+
+in def codeStart (user)
+how can we make python copy a file from os.path.join('_dir, 'dev', 'default')
+named default.code-workpsace, to the users directory and rename it to the users name
+
+---
+
+_**Assistant**_
+
+You can use Python’s `shutil.copyfile` to copy and rename a file. Here’s how you can do it inside your `codeStart(user)` function:
+
+````python
+import shutil
+# ...existing code...
+
+def codeStart(user):
+    """Start the Vs code for a user."""
+    usroot = os.path.join(_dir, 'dev', user)
+    file = os.path.join(usroot, f'{user}.code-workspace')
+    default_file = os.path.join(_dir, 'dev', 'default', 'default.code-workspace')
+    if not os.path.exists(usroot):
+        os.makedirs(usroot)
+    if not os.path.exists(file):
+        shutil.copyfile(default_file, file)
+    return f"API Code - User: {user}"
+# ...existing code...
+````
+
+This will:
+- Copy `default.code-workspace` from the default directory to the user's directory.
+- Rename it to `<user>.code-workspace` in the process.
+
+Let me know if you need error handling or want to check if the default file exists!
+
+---
+
+_**User**_
+
+does my Generate_String function work as expected
+
+---
+
+_**Assistant**_
+
+Your `Generate_String` function will **not work as expected** for several reasons:
+
+### Issues:
+1. **`char=int` is not a valid default argument.**  
+   You probably want `char=8` or another integer.
+
+2. **`str_gen` is not defined anywhere.**  
+   You use `global str_gen`, but you never initialize it. This will raise a `NameError`.
+
+3. **The return statement is invalid:**  
+   ```python
+   return f"{str_gen['result']}" ()
+   ```
+   The `()` at the end will cause a `TypeError` because you are trying to call a string as a function.
+
+### How to Fix:
+
+Here’s a corrected version:
+
+```python
+def Generate_String(char=8):
+    result = ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(char))
+    return result
+```
+
+If you want to keep track of generated strings and counts, use a class or a module-level dictionary, and initialize it before use.
+
+---
+
+**Summary:**  
+- Your current function will raise errors.
+- Use the corrected version above for a simple random string generator.
+- If you want to keep a history, use a class or properly initialize your globals.
+
+Let me know if you want a version that tracks all generated strings!
+
+---
+
+_**User**_
+
+Now I'm actually trying to make this function in the try section, create a new cloudflared tunnel via the cmd, how would we write this 
+
+---
+
+_**Assistant**_
+
+To create a new [cloudflared](https://developers.cloudflare.com/cloudflare-one/connections/connect-apps/install-and-setup/installation/) tunnel via the command line in your `try` block, you can use `subprocess.run` or `subprocess.Popen`. Here’s how you can do it:
+
+Assuming `cloudflared` is installed and in your PATH, and you want to create a tunnel named after the generated string:
+
+```python
+# ...existing code...
+
+        try:
+            gen_str = Generate_String(12)
+            # Example: cloudflared tunnel create <tunnel_name>
+            tunnel_name = f"{self.user}_{gen_str}"
+            result = subprocess.run(
+                ['cloudflared', 'tunnel', 'create', tunnel_name],
+                capture_output=True,
+                text=True
+            )
+            if result.returncode == 0:
+                return f"Tunnel '{tunnel_name}' created successfully.\n{result.stdout}"
+            else:
+                return f"Failed to create tunnel: {result.stderr}"
+
+        except Exception as e:
+            return f"error: {str(e)}"
+# ...existing code...
+```
+
+**Notes:**
+- This will run `cloudflared tunnel create <user>_<randomstring>`.
+- The output and errors are captured and returned.
+- Make sure `cloudflared` is installed and authenticated on your system.
+
+Let me know if you want to pass additional arguments or handle tunnel credentials!
+
+---
+
+_**User**_
+
+okay so now we created the directory, copied the workspace file, and created the tunnel, now how can i dns the tunnel to point to /code/{user}/{gen_str}
+
+---
+
+_**Assistant**_
+
+After creating the tunnel with `cloudflared tunnel create`, you need to:
+
+1. **Create a tunnel configuration file** (YAML) that maps a hostname (DNS) to your local service (e.g., VS Code server).
+2. **Route DNS traffic to the tunnel** using `cloudflared tunnel route dns`.
+3. **Run the tunnel** with `cloudflared tunnel run`.
+
+Here’s how you can automate these steps in Python:
+
+```python
+import os
+import shutil
+import subprocess
+import random
+import string
+import yaml  # Requires PyYAML
+
+class Coder:
+    # ...existing __init__ and Start code...
+
+    def Start(self):
+        # ...existing directory and file setup code...
+
+        try:
+            gen_str = GenString(12)[0]
+            tunnel_name = f"{self.user}_{gen_str}"
+            # 1. Create the tunnel
+            result = subprocess.run(['cloudflared', 'tunnel', 'create', tunnel_name], capture_output=True, text=True)
+            if result.returncode != 0:
+                return f"Failed to create tunnel: {result.stderr}"
+
+            # 2. Get tunnel ID from output or .cloudflared directory
+            tunnel_dir = os.path.expanduser("~/.cloudflared")
+            tunnel_id = None
+            for file in os.listdir(tunnel_dir):
+                if file.endswith('.json') and tunnel_name in file:
+                    tunnel_id = file.split('.')[0]
+                    break
+            if not tunnel_id:
+                return "Tunnel ID not found."
+
+            # 3. Write config file for the tunnel
+            config_path = os.path.join(tunnel_dir, f"{tunnel_name}.yml")
+            config = {
+                "tunnel": tunnel_id,
+                "credentials-file": os.path.join(tunnel_dir, f"{tunnel_id}.json"),
+                "ingress": [
+                    {
+                        "hostname": f"{tunnel_name}.yourdomain.com",  # Replace with your domain
+                        "service": f"http://localhost:8080/code/{self.user}/{gen_str}"
+                    },
+                    {"service": "http_status:404"}
+                ]
+            }
+            with open(config_path, 'w') as f:
+                yaml.dump(config, f)
+
+            # 4. Route DNS (requires your domain to be set up in Cloudflare)
+            subprocess.run(['cloudflared', 'tunnel', 'route', 'dns', tunnel_name, f"{tunnel_name}.yourdomain.com"], capture_output=True, text=True)
+
+            # 5. Run the tunnel (in production, run this as a service or background process)
+            # subprocess.Popen(['cloudflared', 'tunnel', '--config', config_path, 'run', tunnel_name])
+
+            return f"Tunnel created and DNS routed: https://{tunnel_name}.yourdomain.com/code/{self.user}/{gen_str}"
+
+        except Exception as e:
+            return f"error: {str(e)}"
+```
+
+**Key Points:**
+- Replace `yourdomain.com` with your actual Cloudflare-managed domain.
+- The `service` field should point to the local service you want to expose (adjust port/path as needed).
+- You may need to install `PyYAML` (`pip install pyyaml`) for YAML writing.
+- The tunnel will only be active while `cloudflared tunnel run` is running.
+
+Let me know if you want a version that runs the tunnel in the background or need help with your Cloudflare setup!
+
+---
+
+_**User**_
+
+actually, for the random json file that gets made when you make the tunnel, if we added another key to it of our own, would this cause any issues?
+
+---
+
+_**Assistant**_
+
+Modifying the random JSON file generated by `cloudflared tunnel create` (the tunnel credentials file) by adding your own key **is not recommended** and may cause issues.
+
+**Why?**
+- `cloudflared` expects the credentials file to have a specific structure and may validate its contents.
+- Adding extra keys could cause `cloudflared` to fail to read the file, ignore it, or behave unpredictably—especially after updates.
+
+**Best Practice:**  
+If you need to associate extra metadata with a tunnel, create a **separate JSON or YAML file** (or a database entry) that references the tunnel ID or name, and store your custom keys there.
+
+**Summary:**  
+- **Do not** modify the credentials JSON file generated by `cloudflared`.
+- Store your custom data in a separate file or database.
+
+Let me know if you want an example of how to manage tunnel metadata safely!
+
+---
+
+_**User**_
+
+okey then for better handeling purposes, right before we create the tunnel, take a list of everything in the .cloudflared directory, as soon as its done, take another list, now, whichever file is new, is the one we need.
+
+---
+
+_**Assistant**_
+
+```python
+        try:
+            # List files in .cloudflared before tunnel creation
+            cloudflared_dir = os.path.expanduser("~/.cloudflared")
+            before_files = set(os.listdir(cloudflared_dir))
+
+            gen_str = GenString(12)[0] if isinstance(GenString(12), list) else GenString(12)
+            tunnel = f"code_{self.user}_{GenString(3)[0] if isinstance(GenString(3), list) else GenString(3)}"
+            result = subprocess.run(['cloudflared', 'tunnel', 'create', tunnel], capture_output=True, text=True)
+
+            # List files in .cloudflared after tunnel creation
+            after_files = set(os.listdir(cloudflared_dir))
+            new_files = after_files - before_files
+
+            if result.returncode == 0:
+                return {
+                    "status": "success",
+                    "tunnel_name": tunnel,
+                    "new_files": list(new_files),
+                    "stdout": result.stdout
+                }
+            else:
+                return {
+                    "status": "failed",
+                    "tunnel_name": tunnel,
+                    "new_files": list(new_files),
+                    "stderr": result.stderr
+                }
+```
+This will capture the new file(s) created by `cloudflared tunnel create` for further handling.
+
+---
+
+_**User**_
+
+okay help me out here, if we printed new just like in my file as it is now, how would the resulting address look?
+aka, will it be the full C:.User/.cloudlfared/***
+or would it be just the file name itslef? or something else?
+
+---
+
+_**Assistant**_
+
+If you print `new` as in your current code:
+
+```python
+before = set(os.listdir(os.path.expanduser('~/.cloudflared')))
+# ... run cloudflared ...
+after = set(os.listdir(os.path.expanduser('~/.cloudflared')))
+new = after - before
+print(new)
+```
+
+**The output will be a set of file names only** (not full paths), for example:
+```
+{'12345678-aaaa-bbbb-cccc-ddddeeeeffff.json'}
+```
+
+This is because `os.listdir()` returns just the file names in the directory, not their full paths.
+
+**If you want the full path**, you can join each file name with the directory path like this:
+```python
+cloudflared_dir = os.path.expanduser('~/.cloudflared')
+new_full_paths = {os.path.join(cloudflared_dir, fname) for fname in new}
+print(new_full_paths)
+```
+
+But as written, your code will print just the file names.
+
+---
+
+_**User**_
+
+Now that we are also importing yaml, how could I properly define this, in a variable
+
+tunnel: flask
+credentials-file: C:/Users/angry/.cloudflared/5e91f97b-4827-42d4-8bbe-d4a74d96f5ae.json
+
+ingress:
+  - hostname: intellicap.org
+    service: http://localhost:5000
+  - service: http_status:404
+
+
+
+This is a direct copy of intellicaps config.yaml so this IS the corrcet and working structure
+
+---
+
+_**Assistant**_
+
+You can define this YAML structure as a Python dictionary like this:
+
+```python
+config = {
+    "tunnel": "flask",
+    "credentials-file": "C:/Users/angry/.cloudflared/5e91f97b-4827-42d4-8bbe-d4a74d96f5ae.json",
+    "ingress": [
+        {
+            "hostname": "intellicap.org",
+            "service": "http://localhost:5000"
+        },
+        {
+            "service": "http_status:404"
+        }
+    ]
+}
+```
+
+You can then write this to a YAML file using:
+
+```python
+with open('config.yaml', 'w') as f:
+    yaml.dump(config, f, default_flow_style=False)
+```
+
+This will produce the correct YAML structure for your tunnel config.
+
+---
+
+_**User**_
+
+okay so review what i got so far please
+
+---
+
+_**Assistant**_
+
+Here’s a review and some suggestions for your `Coder.Start` method:
+
+---
+
+### **What’s Good**
+- **Directory and workspace setup** is solid.
+- **Tunnel creation** with `cloudflared` is handled and you correctly detect the new credentials file.
+- **YAML config** is built in the correct structure.
+- **Random port** is chosen for the service.
+
+---
+
+### **What Needs Attention**
+
+1. **Tunnel Name Format**
+   - You’re using `tunnel = f"code/{self.user}/{GenString(3)}"`, which will create a tunnel name like `code/username/['abc']`.  
+   - `cloudflared tunnel create` expects a simple name (no slashes or brackets).  
+   - **Fix:**  
+     ```python
+     tunnel = f"code_{self.user}_{GenString(3)[0]}"
+     ```
+
+2. **GenString Return Value**
+   - `GenString(3)` returns a list, so you should use `[0]` to get the string.
+
+3. **YAML File Writing**
+   - Your `with open () as f:` is missing the filename.  
+   - **Fix:**  
+     ```python
+     config_path = os.path.join(os.path.expanduser('~/.cloudflared'), f"{tunnel}.yml")
+     with open(config_path, 'w') as f:
+         yaml.dump(config, f, default_flow_style=False)
+     ```
+
+4. **Error Handling**
+   - You set `status = "Failed"` but don’t return or log it.  
+   - Consider returning a structured error message.
+
+5. **Unused Variables**
+   - `dynlink` is generated but not used.
+
+6. **Security**
+   - Random port selection is fine, but ensure it’s not already in use.
+
+---
+
+### **Suggested Revision**
+
+```python
+def Start(self):
+    """Start the code session for the user."""
+    file = os.path.join(self.root, f'{self.user}.code-workspace')
+    if not os.path.exists(self.root):
+        os.makedirs(self.root)
+    if not os.path.exists(file):
+        files = ['default.code-workspace']
+        for itm in files:
+            addy = os.path.join(usr_def, itm)
+            shutil.copyfile(addy, file)
+
+    try:
+        tunnel = f"code_{self.user}_{GenString(3)[0]}"
+        cloudflared_dir = os.path.expanduser('~/.cloudflared')
+        before = set(os.listdir(cloudflared_dir))
+        result = subprocess.run(['cloudflared', 'tunnel', 'create', tunnel], capture_output=True, text=True)
+        if result.returncode == 0:
+            after = set(os.listdir(cloudflared_dir))
+            new = after - before
+            creds = os.path.join(cloudflared_dir, new.pop())
+            port = random.choice(range(10000, 20000))
+            config = {
+                "tunnel": tunnel,
+                "credentials-file": creds,
+                "ingress": [
+                    {
+                        "hostname": "intellicap.org",
+                        "service": f"http://localhost:{port}"
+                    },
+                    {
+                        "service": "http_status:404"
+                    }
+                ]
+            }
+            config_path = os.path.join(cloudflared_dir, f"{tunnel}.yml")
+            with open(config_path, 'w') as f:
+                yaml.dump(config, f, default_flow_style=False)
+            return {"status": "success", "tunnel": tunnel, "config": config_path}
+        else:
+            return {"status": "failed", "stderr": result.stderr}
+    except Exception as e:
+        return {"status": "error", "error": str(e)}
+```
+
+---
+
+**Summary:**  
+- Clean up tunnel naming and GenString usage.
+- Write the YAML config to a file with a proper name.
+- Return structured results for both success and failure.
+- Consider checking if the random port is available before using it.
+
+Let me know if you want this applied or need further improvements!
+
+---
+
+_**User**_
+
+how can i check to see if a port number is being used or not
+
+---
+
+_**Assistant**_
+
+You can check if a port is in use in Python by trying to bind a socket to it. If the bind fails, the port is in use. Here’s a function you can use:
+
+````python
+import socket
+
+def is_port_in_use(port, host='127.0.0.1'):
+    with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+        try:
+            s.bind((host, port))
+            return False  # Port is free
+        except OSError:
+            return True   # Port is in use
+````
+
+**Usage:**
+```python
+port = random.choice(range(10000, 20000))
+while is_port_in_use(port):
+    port = random.choice(range(10000, 20000))
+```
+
+This will ensure you pick a free port before using it.
+
+---
+
+_**User**_
+
+isnt there another dns thing I gotta run in the cmd to setup a tunnel correctly?
+
+---
+
+_**Assistant**_
+
+Yes, after creating a tunnel with `cloudflared tunnel create`, you also need to **route a DNS hostname to your tunnel** using the following command:
+
+```sh
+cloudflared tunnel route dns <tunnel-name> <hostname>
+```
+
+**Example for your code:**
+```sh
+cloudflared tunnel route dns code.youruser.xyz intellicap.org
+```
+
+This command tells Cloudflare to route traffic from `intellicap.org` to your tunnel.
+
+---
+
+### **How to Add This in Python**
+
+Add this after you write your YAML config:
+
+```python
+subprocess.run(
+    ['cloudflared', 'tunnel', 'route', 'dns', tunnel, 'intellicap.org'],
+    capture_output=True,
+    text=True
+)
+```
+
+---
+
+**Summary of Steps for a New Tunnel:**
+1. `cloudflared tunnel create <tunnel-name>`
+2. Write the YAML config file.
+3. `cloudflared tunnel route dns <tunnel-name> <hostname>`
+4. `cloudflared tunnel run <tunnel-name>` (to start the tunnel)
+
+Let me know if you want the full code snippet for this!
+
+---
+
+_**User**_
+
+when we make the config.yaml file, does it HAVE to be named that?
+
+---
+
+_**Assistant**_
+
+No, the config file for a Cloudflare Tunnel **does not have to be named `config.yaml`**.  
+You can name it anything you want, such as `mytunnel.yml` or `code.<user>.yml`.
+
+**However:**  
+When you run the tunnel, you must specify the config file with the `--config` flag if it’s not named `config.yaml` or not in the default location.
+
+**Example:**
+```sh
+cloudflared tunnel --config /path/to/yourfile.yml run <tunnel-name>
+```
+
+**Summary:**  
+- You can use any name for the config file.
+- Just remember to use `--config` when running the tunnel if it’s not the default.
+
+Let me know if you want a code snippet to write the config with a custom name!
+
+---
+
+_**User**_
+
+does os.makedirs make folders and files?
+
+---
+
+_**Assistant**_
+
+No, `os.makedirs()` **only creates directories (folders)**, not files.
+
+- If you call `os.makedirs(path)`, it will create all intermediate directories in the given path if they do not exist.
+- It does **not** create files.  
+- To create or write a file, use `open(filename, 'w')` or similar file operations.
+
+**Example:**
+```python
+os.makedirs('some/new/folder', exist_ok=True)  # Creates folders only
+with open('some/new/folder/file.txt', 'w') as f:
+    f.write('Hello!')  # Creates a file inside the folder
+```
+
+So, in your code, use `os.makedirs(dir_path, exist_ok=True)` for folders, and `with open(file_path, 'w') as f:` for files.
+
+---
+
+_**User**_
+
+so checking my file now, if dnns.returncode == 0, im good to run the tunnel and it should work right?
+
+---
+
+_**Assistant**_
+
+Yes, that's correct!  
+If `dnns.returncode == 0`, it means the DNS routing command was successful and your tunnel is properly registered with Cloudflare to route `intellicap.org` to your tunnel.
+
+**At this point, you can safely run the tunnel:**
+
+```python
+subprocess.Popen([
+    'cloudflared', 'tunnel', '--config', os.path.join(cfd, f"{tunnel}.yaml"), 'run', tunnel
+])
+```
+
+This will start the tunnel using your generated config file.
+
+**Summary:**  
+- `dnns.returncode == 0` means DNS routing succeeded.
+- You can now run the tunnel and it should work as expected.
+
+Let me know if you want a full example including the tunnel run step!
+
+---
+
+_**User**_
+
+well wait a second, We dont want intellicap.org to go here, we want a new subdomain
+
+---
+
+_**Assistant**_
+
+You're absolutely right!  
+If you use `intellicap.org` as the hostname, all traffic for your main domain will route to this tunnel—which is not what you want for per-user or per-session tunnels.
+
+**Instead, generate a unique subdomain for each tunnel.**  
+For example:  
+`tunnel-<user>-<rand>.intellicap.org`
+
+**How to do it:**
+
+```python
+subdomain = f"code-{self.user}-{GenString(char=5)[0]}"
+hostname = f"{subdomain}.intellicap.org"
+```
+
+Then, update your config and DNS routing:
+
+```python
+config = {
+    "tunnel": tunnel,
+    "credentials-file": creds,
+    "ingress": [
+        {
+            "hostname": hostname,
+            "service": f"http://localhost:{port}"
+        },
+        {
+            "service": "http_status:404"
+        }
+    ]
+}
+with open(os.path.join(cfd, f"{tunnel}.yaml"), 'w') as f:
+    yaml.dump(config, f, default_flow_style=False)
+dnns = subprocess.run(['cloudflared', 'tunnel', 'route', 'dns', tunnel, hostname], capture_output=True, text=True)
+```
+
+**Now each tunnel gets its own subdomain!**  
+Let me know if you want the full function updated.
+
+---
+
+_**User**_
+
+now check it again please to ensure that we properly created a new port and subdomain, and start the tunnel
+
+---
+
+_**Assistant**_
+
+Your logic is almost correct, but you should use your generated subdomain (e.g., `code-<user>-<rand>.intellicap.org`) for both the config and the DNS routing, not the root domain `intellicap.org`.
+
+Here’s what you should fix:
+
+- **Generate the subdomain once** and use it for both the config and the DNS command.
+- **Use the same tunnel name and subdomain throughout.**
+
+Here’s a corrected version of your logic:
+
+````python
+try:
+    tunnel = f"code.{self.user}.{GenString(char=3)[0]}"
+    cfd = os.path.expanduser('~/.cloudflared')
+    before = set(os.listdir(cfd))
+    result = subprocess.run(['cloudflared', 'tunnel', 'create', tunnel], capture_output=True, text=True)
+    if result.returncode == 0:
+        after = set(os.listdir(cfd))
+        new = after - before
+        creds = os.path.join(cfd, new.pop())
+        while True:
+            port = random.choice(range(10000, 20000))
+            with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+                try:
+                    host = '127.0.0.1'
+                    s.bind((host, port))
+                    break
+                except OSError:
+                    continue
+        # Generate a unique subdomain for this tunnel
+        subdomain = f"code-{self.user}-{GenString(char=5)[0]}"
+        hostname = f"{subdomain}.intellicap.org"
+        config = {
+            "tunnel": tunnel,
+            "credentials-file": creds,
+            "ingress": [
+                {
+                    "hostname": hostname,
+                    "service": f"http://localhost:{port}"
+                },
+                {
+                    "service": "http_status:404"
+                }
+            ]
+        }
+        config_path = os.path.join(cfd, f"{tunnel}.yaml")
+        with open(config_path, 'w') as f:
+            yaml.dump(config, f, default_flow_style=False)
+        # Route the subdomain to the tunnel
+        dnns = subprocess.run(['cloudflared', 'tunnel', 'route', 'dns', tunnel, hostname], capture_output=True, text=True)
+        if dnns.returncode == 0:
+            subprocess.Popen(['cloudflared', 'tunnel', '--config', config_path, 'run', tunnel])
+        else:
+            return f"DNS routing failed: {dnns.stderr}"
+    else:
+        return f"Tunnel creation failed: {result.stderr}"
+
+except Exception as e:
+    return f"error: {str(e)}"
+````
+
+**Summary of changes:**
+- The subdomain is generated once and used for both the config and DNS routing.
+- The tunnel is started only if DNS routing succeeds.
+- Errors are returned if any step fails.
+
+This will ensure each user/session gets a unique subdomain and port, and the tunnel is started correctly.
+
+---
+
+_**User**_
+
+can you apply those changes for me
+
+---
+
+_**Assistant**_
+
+
 
 ---
 

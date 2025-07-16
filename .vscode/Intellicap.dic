@@ -1,9 +1,45 @@
-Intellicap
-AngrySatan666
-AngrySatan
-GitHub
-cmdlet
-jsonc
-ngrok
-sqlite
-sqlite3
+# /1.0/ [Repo Words]
+AngrySatan # Dev-ShortName
+AngrySatan666 # Dev-Name
+Intellicap # Software Name
+tfukgobx # Defualt Pass
+
+# /2.0/ [Dev-Words]
+# //2.1/ (Services)
+GitHub # Fuck yeah GitHub
+ngrok # Dont knock the NGrok
+
+# //2.2/ (Modules)
+cmdlet # PC NModule
+psql # Postgresql cmd call
+psycopg # Python Module: psycopg2, for connection to DB's
+sqlalchemy # Python Module: sqlalchemy
+sqlite # Python Module: sqlite
+sqlite3 # Python3 Module: sqlite3
+
+# //2.3/ (Filing)
+jsonc # File Extension: Json with Comments
+
+# //2.4/ (Variable Names)
+pri # Var for 'private'
+pub # Var for 'public'
+
+# //2.5/ (Terminology)
+outpath # Output Disk Address
+runnit # Run the Script
+snippetype # My Fancy word for Simple Repedative functions found in multiple scripts
+
+# /3.0/ [Trading Words]
+# //3.1/ (Tickers)
+AAPL # Ticker Symbol: Apple
+AMD # Ticker Symbol: Amd lol
+AMZN # Ticker Symbol: Amazon
+COIN # Ticker Symbol: CoinBase
+GOOGL # Ticker Symbol: Google
+MSFT # Ticker Symbol: Microsoft
+SMCI # Ticker Symbol: SuperMicro Computer
+SPY # Ticker Symbol: Spy ETF
+TSLA # Ticker Symbol: Tesla
+
+# //3.2/ (Brokerage Terms)
+intraday # Timing: Current Day

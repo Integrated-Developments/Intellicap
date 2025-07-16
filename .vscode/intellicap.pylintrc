@@ -1,0 +1,5 @@
+[MESSAGES CONTROL]
+disable-C0301
+disable=C0413
+disable-W0603
+disable-W0621

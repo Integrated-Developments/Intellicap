@@ -4,6 +4,9 @@
     "folders": [
         {
             "path": ".."
+        },
+        {
+            "path": "C:/.Repo/.BackUp"
         }
     ],
     //2.0: Workspace Settings
@@ -1063,7 +1066,20 @@
                 }
             ],
         }
-    }
+    },
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 6666,
+            "askForPassword": true,
+            "driver": "PostgreSQL",
+            "name": "tools",
+            "group": "servers",
+            "database": "intellicap",
+            "username": "postgres"
+        }
+    ]
     },
 
     //5.0: Workspace Extensions

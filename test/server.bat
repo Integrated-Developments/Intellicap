@@ -11,14 +11,4 @@ if %errorLevel% neq 0 (
 :: Clear the terminal
 cls
 
-:: Start Flask app (adjust path as needed)
-start "" "%SystemRoot%\System32\cmd.exe" /k "python C:\.Repo\Intellicap\core\flask\run.py"
-
-:: Wait a few seconds for Flask to start
-timeout /t 3 /nobreak >nul
-
-:: Start cloudflared tunnel
-start "" "%SystemRoot%\System32\cmd.exe" /k "cloudflared tunnel run flask"
-
-:: Optional: Keep window open
-pause
+wsl.exe -d Ubuntu -- bash -c code-server

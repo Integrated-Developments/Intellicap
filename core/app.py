@@ -41,12 +41,12 @@ def create_app():
     from bp.auth_bp import auth_bp
     from bp.user_bp import user_bp
     from bp.main_bp import main
-    from bp.api_bp import api_bp
+    from bp.api_bp import api
     app.register_blueprint(admin_bp, url_prefix='/admin')
     app.register_blueprint(auth_bp, url_prefix='/auth')
     app.register_blueprint(user_bp, url_prefix='/user')
     app.register_blueprint(main, url_prefix='/')
-    app.register_blueprint(api_bp, url_prefix='/api')
+    app.register_blueprint(api, url_prefix='/api')
 
     socketio.init_app(app, cors_allowed_origins="*")
     return app, socketio

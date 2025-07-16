@@ -11,7 +11,194 @@ It should do so by imoporting wahtever is neccessary to connect to the db, then 
 
 _**Assistant**_
 
+To implement your requirements, here’s the step-by-step solution:
 
+1. **Import SQLAlchemy and the Members model** from your models.
+2. **Connect to the database** using the same configuration as your Flask app.
+3. **After generating the keys**, check if the `user` variable matches an `id` in the `members` table.
+4. **If a match is found**, update the `wallet_pub` and `wallet_pri` columns for that member with the generated base64 strings.
+5. **Commit the changes** to the database.
+
+Below are the concise code changes:
+
+---
+
+### [btc.py](file:///c%3A/.Repo/Intellicap/core/bin/btc.py)
+
+Add SQLAlchemy setup, import Members, and update the `main()` function to store keys in the database for the matched user.
+
+````python
+# ...existing code...
+import base64
+
+# Add these imports for DB access
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from models import Members, db
+
+# ...existing code...
+
+def main () :
+    parser = argparse.ArgumentParser(description='Generate Bitcoin Wallet as Binary, Create Tranasctions')
+    parser.add_argument('--cmd', action='store_true', help='Enable command mode')
+
+    args = parser.parse_args()
+
+    if args.cmd :
+        try :
+            data = json.load(sys.stdin)
+            attachments = data.get('attachments', [])
+            comment = data.get('comment', '')
+            arguments = data.get('arguments', [])
+            args_dict = {}
+            for arg in arguments :
+                if isinstance(arg, dict) :
+                    args_dict.update(arg)
+            if '--create_wallet' in args_dict :
+                user = args_dict['--create_wallet']
+                if '--seed' in args_dict :
+                    seed = args_dict['--seed']
+                    public, private = create (seed=seed)
+                else :
+                    public, private = create ()
+
+                # --- DB Connection and Update ---
+                # Use the same URI as in app.py
+                engine = create_engine('postgresql+psycopg2://postgres:tfukgobx@localhost:6666/intellicap')
+                Session = sessionmaker(bind=engine)
+                session = Session()
+                try:
+                    member = session.query(Members).filter_by(id=int(user)).first()
+                    if member:
+                        member.wallet_pub = public.encode('utf-8')
+                        member.wallet_pri = private.encode('utf-8')
+                        session.commit()
+                    else:
+                        # Optionally handle user not found
+                        pass
+                finally:
+                    session.close()
+            # ...existing code...
+        except json.JSONDecodeError as e :
+            response = json.dumps({"status": 404, "body": {"result": "Error: ", "message": "Json Decode Error: " + str(e)}})
+        except Exception as e :
+            response = json.dumps({"status": 500, "body": {"result": "Error: ", "message": str(e)}})
+            return response
+
+# ...existing code...
+````
+
+---
+
+_**User**_
+
+does this correctly import and connectto my postgresql database and use models.py to create the tables?
+
+---
+
+_**Assistant**_
+
+No, your current setup does not automatically create the tables in the PostgreSQL database just by importing `models.py`. Here’s what your code does and what you need:
+
+### What your code does:
+- In `app.py`, you configure Flask and SQLAlchemy, and call `db.init_app(app)`.
+- In `models.py`, you define your models and instantiate `db = SQLAlchemy()`.
+
+### What is missing:
+- **Table creation**: SQLAlchemy does not create tables automatically on import. You must explicitly call `db.create_all()` within an application context after initializing your app.
+
+### How to fix:
+Add the following after your `create_app()` function in `app.py` (or in a separate script you run once):
+
+````python
+# ...existing code...
+
+def create_app():
+    # ...existing code...
+    db.init_app(app)
+    # ...existing code...
+    return app, socketio
+
+# Add this block to create tables if running this file directly
+if __name__ == "__main__":
+    app, _ = create_app()
+    with app.app_context():
+        db.create_all()
+````
+
+**Summary:**  
+- Your config and model imports are correct.
+- You must call `db.create_all()` inside an app context to actually create the tables in your PostgreSQL database.  
+- Do this once after defining your models, or as part of your app startup if you want tables to always be created if missing.
+
+---
+
+_**User**_
+
+No i dont want to run the app.py directly, we wil still be importing create app in run.py and using that as our entry, so how can create the table if they dont exisist
+
+---
+
+_**Assistant**_
+
+To ensure tables are created even when you don't run `app.py` directly, you should call `db.create_all()` in your `run.py` after creating the app and before starting the server. This way, tables will be created if they don't exist, regardless of how the app is started.
+
+Here's how you can do it:
+
+---
+
+### [run.py](file:///c%3A/.Repo/Intellicap/core/run.py)
+
+Add table creation after app creation and before running the app.
+
+````python
+# ...existing code...
+from app import create_app, db
+
+app, socketio = create_app()
+
+with app.app_context():
+    db.create_all()
+
+# ...existing code to run the app/socketio...
+````
+
+---
+
+**Summary:**  
+- Import `db` and `create_app` from your app module.
+- Call `db.create_all()` inside the app context before running the server.
+- This ensures tables are created if missing, no matter how you launch your app.
+
+---
+
+_**User**_
+
+okay now, can you tak eout the changes you had made to app.py
+
+---
+
+_**Assistant**_
+
+### [app.py](file:///c%3A/.Repo/Intellicap/core/app.py)
+
+Remove the block that creates tables if running the file directly. Only keep the `create_app` function and related code.
+
+````python
+# ...existing code...
+
+def create_app():
+    '''Create and configure the Flask application instance.'''
+    app = Flask(__name__, static_folder='static', template_folder='templates')
+    # ...existing code...
+    db.init_app(app)
+    # ...existing code...
+    socketio.init_app(app, cors_allowed_origins="*")
+    return app, socketio
+
+# (Remove the block that checks for __name__ == "__main__" and calls db.create_all())
+````
 
 ---
 

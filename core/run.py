@@ -10,17 +10,18 @@ Dev = 'AngrySatan666'
 
 # <!-- [SS-1]: Imports ----->
 from app import create_app, socketio, db
-import argparse
+import os, argparse
 
 # <!-- [SS-2]: Global Variables ----->
-
-# <!-- [SS-3]: Helper Functions ----->
-
-# <!-- [SS-4]: Functions ----->
+_dir = _dir = os.path.dirname(os.path.abspath(__file__))
 app, socketio = create_app()
 
+# <!-- [SS-3]: Helper Functions ----->
+from models import *
 with app.app_context():
     db.create_all()
+
+# <!-- [SS-4]: Functions ----->
 
 # <!-- [SS-5]: Runnit ----->
 if __name__ == '__main__':

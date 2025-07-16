@@ -1,6 +1,4 @@
-from flask_sqlalchemy import SQLAlchemy
-
-db = SQLAlchemy()
+from app import db
 
 class StockAccount (db.Model) :
     __tablename__ = 'stock_account'
@@ -33,3 +31,18 @@ class TransActions (db.Model) :
     shares = db.Column (db.Integer, nullable=False, comment='Number of Shares')
     price = db.Column (db.Float, nullable=False, comment='Price of the Shares')
     cap = db.Column (db.Float, nullable=False, comment='Capital of Intellicap at Transaction')
+
+
+class CodeSessions(db.Model):
+    __tablename__ = 'code_sessions'
+    id = db.Column(db.Integer, primary_key=True, comment='Unique ID of the Code Session')
+    user_id = db.Column(db.Integer, db.ForeignKey('members.id'), nullable=False, comment='ID of the User (Member)')
+    tunnel_name = db.Column(db.String, nullable=False, comment='Name of the Cloudflare Tunnel')
+    host_name = db.Column(db.String, nullable=False, comment='Host name for the tunnel (e.g., code-username-xyz.intellicap.org)')
+    subdomain = db.Column(db.String, nullable=False, comment='Subdomain used for the tunnel')
+    port = db.Column(db.Integer, nullable=False, comment='Local port used for the tunnel')
+    creds_path = db.Column(db.String, nullable=False, comment='Path to the credentials file')
+    config_path = db.Column(db.String, nullable=False, comment='Path to the tunnel config YAML file')
+    created_at = db.Column(db.DateTime, server_default=db.func.now(), nullable=False, comment='Timestamp when the session was created')
+    status = db.Column(db.String, nullable=True, comment='Status of the session (e.g., active, failed)')
+    notes = db.Column(db.Text, nullable=True, comment='Additional notes or metadata')
