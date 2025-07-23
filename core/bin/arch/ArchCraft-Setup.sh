@@ -9,7 +9,7 @@ Dev='AngrySatan666'
 # <!-- [SS-1]: Global Variables ----->
 # /1.1/ Path Variables
 : "${ROOT:=/root}"
-: "${BASHRC:=$/etc/bash.bashrc}"
+: "${BASHRC:=/etc/bash.bashrc}"
 : "${INT:=/intellicap}"
 : "${CACHE:=$HOME/.cache}"
 : "${STATE:=$CACHE/state.build}"
@@ -248,7 +248,7 @@ Depends () {
     if ! Cache Deps-Arc; then
 		pacman -Syu --noconfirm || { Error "Updating pacman Failed"; exit 1; }
         PAK arc
-        PAK aur
+        PAK yay
         PAK dgd
         SetCache Deps-Arc
     fi
@@ -547,13 +547,13 @@ CloudFlare () {
         local before=($(ls -1 "$ROOT/.cloudflared"))
         cloudflared tunnel create Flask-Tunnel || { Error "Tunnel creation failed"; exit 1; }
         local after=($(ls -1 "$ROOT/.cloudflared"))
-        for file in "${after[@]}"; do
+        for f in "${after[@]}"; do
 			if [[ ! " ${before[*]} " =~ " $f " ]]; then
-				new="$f"
+				local new="$f"
 				break
 			fi
 		done
-		[[ -z "$new" ]] | { Error "Failed to Locate Tunnel Credentials File"; exit 1 }
+		[[ -z "$new" ]] || { Error "Failed to Locate Tunnel Credentials File"; exit 1 }
         SetCache Cloudflare-Tunnel
         Info "Tunnel 'Flask-Tunnel' Created"
     fi
@@ -621,9 +621,9 @@ SirRoot () {
 	fi
 	
 	# /8.2/ Desktop Pretty
-	if ! Cache Root-Pretty
+	if ! Cache Root-Pretty; then
 		local src="$SRC/dsktop"
-		[[ -f "$ROOT/.icons" ]] || { Error "Icons Dir Not Found in Source"; exit 1; }
+		[[ -d "$ROOT/.icons" ]] || { Error "Icons Dir Not Found in Source"; exit 1; }
 		mkdir -p "$ROOT/.icons" || { Error "Failed to Create /root/.config/"; exit 1; }
 		cp -r "$src/icons/." "$ROOT/.icons" || { Error "Failed to Create Root .icons"; exit 1; }
 		cp -r "$src/Img/." "$ROOT/Pictures" || { Error "Failed to Create Root Pictures"; exit 1; }
@@ -661,18 +661,21 @@ SirRoot () {
     # /8.4/ Root/.local/bin to Path and chmod +x Contents
     if ! Cache Root-LocalBin; then
 		Info "PATHing Root/.local/bin"
-		echo 'export PATH="$PATH:/root/.local/bin"' >> "$BASHRC" { Error "Failed to Copy to Bashrc"; exit 1; }
-		echo 'find /root/.local/bin -type f -exec chmod +x {} \;' >> "$BASHRC" { Error "Failed to Copy to Bashrc"; exit 1; }
-		echo 'export ROOT=/root' >> "$BASHRC" { Error "Failed to Copy to Bashrc"; exit 1; }
+		echo 'export PATH="$PATH:/root/.local/bin"' >> "$BASHRC" || { Error "Failed to Copy to Bashrc"; exit 1; }
+		echo 'find /root/.local/bin -type f -exec chmod +x {} \;' >> || "$BASHRC" { Error "Failed to Copy to Bashrc"; exit 1; }
+		echo 'export ROOT=/root' >> "$BASHRC" || { Error "Failed to Copy to Bashrc"; exit 1; }
 		SetCache Root-LocalBin
 		Info "Root/.local/bin in PATH and Executable"
+	fi
 }
     
-
-
-
-BlueTooth () {
-	sudo pacman -S bluez bluez-utils blueman linux-firmware
-	reboot
-	dmesg | grep -i bluetooth
-}
+Start
+DirCache
+Depends
+Bash-Comp
+SynchDisp
+Ranger
+CloudFlare
+Alias
+SirRoot
+End
