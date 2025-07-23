@@ -3,3 +3,4 @@ assets/
 dev/
 __pycache__/
 .specstory/
+.git/

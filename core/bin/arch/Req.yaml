@@ -1,0 +1,78 @@
+# Requirements.yaml - Structured Dependency Definition
+
+# <!-- Distro: Linux Packages ----->
+
+# Offical Packages
+arc:
+
+# // Languages
+  - name: rust
+  - name: jdk-openjdk
+  - name: maven
+  - name: gradle
+  - name: nodejs
+  - name: go
+  - name: kotlin
+  
+# // PC System 
+  - name: bluez
+  - name: bluez-utils
+  - name: blueman
+  - name: linux-firmware
+  
+# // Archival
+  - name: ranger
+  - name: zip
+  - name: git
+  - name: jq
+  - name: yq
+  - name: bash-completion
+  - name: curl
+  - name: wget
+  - name: tar
+
+# Non-Offical User Hosted Linux Packages
+yay: 
+  - name: downgrade
+
+# Specific Versions of Either Offical Non-Offical Packages
+dgd:
+  - name: python
+    version: "3.10"
+    mngr: pacman
+
+
+
+
+# <!-- Lang: Python Packages ----->
+pip:
+  - name: flask
+  - name: flask-wtf
+  - name: pyautogui
+  - name: pytesseract
+  - name: numpy
+  - name: tensorflow
+  - name: matplotlib
+  - name: yfinance
+  - name: ta
+
+# <!-- Lang: Java Packages ----->
+mvn:
+  - name:
+
+# <!-- Lang: Rust Packages ----->
+crg:
+  - name: jql
+
+# <!-- Lang: Nodejs Packages ----->
+npm:
+  - name: 
+  
+# <!-- Lang: Kotlin Packages ----->
+grd:
+  - name: 
+
+# <!-- Lang: Golang Packages ----->
+goi:
+  - name:
+
