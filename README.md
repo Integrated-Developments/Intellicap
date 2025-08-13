@@ -8,7 +8,7 @@
 
 ### 1. **Market Data Integration**  
 
-- High-performance, asynchronous FastAPI modules for market data retrieval and web scraping.
+- High-performance, asynchronous FastAPI modules for market data retrieval and web scraping, across a dedicated parent-child node remote configuration. 
 
 ### 2. **Data Processing**  
 
@@ -19,7 +19,7 @@
 - A TensorFlow-powered AI module capable of:
 
   - Developing its own trading strategies.  
-  - Conducting extensive back-testing and live paper-trade testing.  
+  - Conducting extensive back-testing and live paper-trade testing. 
   - Executing real trades via brokerage APIs.  
 
 ### 4. **Interactive Web Application**
@@ -58,23 +58,11 @@ The AI is subject to federal taxation. Taxes are applied equally to all users by
 
 ---
 
-## 📑 Table of Contents
-
-1. [User Accounts](#-user-accounts)
-
-2. [Current Indexes](#-current-indexes)
-
-3. [Mutual Fund Tax Schedule & Rates](#-mutual-fund-tax-schedule--rates)
-
-4. [Contact & Support](#-contact--support)
-
----
-
 ## 👤 User Accounts
 
 ### Registration
 
-Users can register for an investment account at **[Intellicap.space](https://intellicap.space)**.
+Users can register for an investment account at **[Intellicap.org](https://intellicap.org)**.
 
 ### Deposits, Withdrawals, and Investments
 
@@ -87,43 +75,11 @@ To make deposits or withdrawals, users must link a BTC wallet to their account. 
 
 ---
 
-## 📊 Current Indexes
-
-### Available Indexes  
-
-| **Index** | **Security Type**    | **Goal**     | **Risk**         | **Aggression** | **P/L**   | **Shares** | **Cost** | **Investment Total** |
-|-----------|-----------------------|--------------|------------------|----------------|-----------|------------|----------|-----------------------|
-| Div-S     | Stocks / ETFs         | ~5% APY      | None - Low       | Non-Aggressive| $0.00     | 0          | $0.00    | $0.00                |
-| Div-R     | Stocks / ETFs         | ~10% APY     | Mid - High       | Minimal Aggro  | $0.00     | 0          | $0.00    | $0.00                |
-| Daily-1   | Options Contracts     | ~1% Daily    | Mid - High       | High-Aggro     | $0.00     | 0          | $0.00    | $0.00                |
-| Opt-R     | Options Contracts     | + MAX %      | Extremely High   | PISSED-OFF     | -$253.93  | 111        | $7.719   | $1,110.80            |
-| Sav-S     | Savings Account       | 5% APY       | None - Minimal   | Non-Aggressive| $0.00     | 0          | $0.00    | $0.00                |
-
-Indexes are dynamically updated based on AI performance and market conditions.
-
----
-
 ## 💰 Mutual Fund Tax Schedule & Rates
 
 ### Taxation Overview  
 
-- Taxes are calculated and deducted automatically by the AI.  
-- The mutual fund's performance reflects post-tax returns.  
-
-### Current Tax Rates  
-
-| **Tax Type**       | **Rate (%)** |
-|--------------------|--------------|
-| Federal Income     | 15           |
-| Capital Gains      | 20           |
-| Transaction Fees   | 0.5          |
-
----
-
-## 📞 Contact & Support
-
-For inquiries or support, please contact us at:  
-📧 **[support@Intellicap.space](mailto:support@Intellicap.space)**  
-🌐 **[Intellicap.space](https://intellicap.space)**
+- Taxes are calculated, deducted, and filed automatically by the AI directly off the top.  
+- Personal taxes are calcualted and documented for each user that they can request any time if present,
 
 ---
